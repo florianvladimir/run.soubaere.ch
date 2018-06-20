@@ -1,0 +1,931 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04.01.2018, 10:12:35
+    Author     : moserfl
+*/
+
+@font-face { 
+    font-family: "coool"; 
+    src: url("../fonts/Raleway-Regular.ttf"); 
+}
+
+
+body{
+    margin: 0;
+    font-family: coool,Arial,sans-serif;
+    background-color: #eee;
+
+}
+
+a{
+    text-decoration: none;
+
+}
+#header_pic{
+    background-image: url(../pictures/header.jpg);
+    width: 100%;
+    height: 100px;
+
+}
+
+
+
+h1{
+    font-size: 3em;
+}
+
+
+/*Content*/
+#content1{
+    background-color: black;
+    width: 100%;
+    overflow: auto;
+
+}
+.contText{
+    margin: 2% 5%;
+    width: calc(100% - 10%);
+    float: left;
+}
+
+
+#content{
+    margin: 0 auto;
+    width: 999px;
+
+
+}
+
+.contFormular{
+    width: 100%;
+    margin: 80px auto;
+    background-color: #0E6DBC;
+    border-radius: 10px;
+    padding-bottom: 500px;
+
+}
+#karte{
+    width: 450px;
+
+    float: left;
+}
+#ol{
+    width: 450px;
+
+    float: right;
+}
+
+
+.whitecont{
+    background-color: white;
+    height: 1000px;
+}
+.small{
+    margin: 10px 0;
+    width: 480px;
+    height: 270px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0, .16), 0 6px 10px 0 rgba(0,0,0, .12);
+    border-radius: 2px;
+}
+
+.smallGps{
+    margin: 10px 0;
+    width: 480px;
+    height: 270px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0, .16), 0 6px 10px 0 rgba(0,0,0, .12);
+    border-radius: 2px;
+}
+
+.big{
+    margin: 30px 0 10px 0;
+    width: 100%;
+    height: 270px;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0, .16), 0 6px 10px 0 rgba(0,0,0, .12);
+    border-radius: 2px;
+    background-color: white;
+
+}
+.big p, .big h1{
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+}
+.art{
+    width: 100%;
+    height: 200px;
+
+}
+.art h2, .art p{
+    width: 400px;
+    margin: 0px auto;
+    padding: 30px 0 0 0;
+    text-align: center;
+
+
+}
+
+.light{
+    color: white;
+}
+.dark{
+    color: #0E6DBC;
+}
+
+#b1{
+    float: left;
+    background-image: url("../pictures/lake_small.jpg");
+}
+
+#b2{
+    float: right;
+    background-color: white;
+
+}
+
+#b3{
+    float: left;
+    background-image: url(../pictures/nodhalten_small.jpg);
+}
+#b3 h2{
+    background-color: #FFF;
+    padding:10px 40px
+}
+#b4{
+    float: right;
+    background-image: url(../pictures/stone1_small.jpg);
+}
+
+#ug1{
+    float: left;
+    background-image: url(../pictures/stone2_small.jpg)
+}
+#ug2{
+    float: right;
+    background-color: white;
+}
+
+#picgps{
+    float: left;
+    margin-top: 10px;
+    background-image: url(../pictures/T8.Lang.jpg);
+    background-position-y: 70%;
+    background-size: 150%
+}
+
+#picgpsGr{
+    float: left;
+    margin: 0;
+    background-image: url(../pictures/T8.Lang.jpg);
+    background-position-y: 70%;
+    background-size: 150%;
+
+}
+
+.training{
+    width: 100%;
+    padding: 3% 0;
+    margin-bottom: 150px;
+    background-color: #0E6DBC;
+
+}
+.training h2{
+    margin: 0;
+    text-align: center;
+}
+
+/*GPS-Archiv Bilder*/
+.left{
+    float: left; 
+}
+.right{
+    float: right; 
+}
+
+#gps1{
+    background-image: url(../pictures/t8_small.jpg);
+
+
+}
+
+#gps2{
+    background-image: url(../pictures/nodhalten_small.jpg);
+    background-size: 111%;
+
+
+}
+
+#g3{
+
+}
+#g4{
+
+}
+/*Galerie*/
+.bilder{
+    width: 630px;
+    height: calc(630px*4/6);
+    background-size: 100%;
+    background-position: 50% 50%;
+    transition: 0.3s;
+    margin: 2% 0;
+    background-repeat: no-repeat;
+
+
+}
+.gal{
+    width: 1300px;
+    margin: 0 auto;
+}
+#bild1{
+    background-image: url(../pictures/lake_small.jpg);
+}
+#bild2{
+    background-image: url(../pictures/stone1_small.jpg);
+}
+
+#bild3{
+    background-image: url(../pictures/stone2_small.jpg);
+}
+
+#bild4{
+    background-image: url(../pictures/flo1_small.jpg);
+}
+#bild5{
+    background-image: url(../pictures/flo2_small.jpg);
+}
+#bild6{
+    background-image: url(../pictures/mio1_small.jpg);
+}
+
+#bild7{
+    background-image: url(../pictures/mio2_small.jpg);}
+#bild8{
+    background-image: url(../pictures/mio3_small.jpg);
+}
+
+#bild9{
+    background-image: url(../pictures/mio4_small.jpg);
+}
+#bild10{
+    background-image: url(../pictures/meer1_small.jpg);
+}
+#bild11{
+    background-image: url(../pictures/meer2_small.jpg);
+}
+
+#bild12{
+    background-image: url(../pictures/meer3_small.jpg);}
+
+
+.bilder:hover{
+    background-size: 105%;
+}
+
+
+/*Formular*/
+.formular{
+    width: calc(100% - padding);
+    padding: 2.5%;
+    color: white;
+    font-size: 180%;
+
+
+}
+.inp{
+    background-color: transparent;
+    width: 100%;
+    border-bottom: 2px;
+    border-style:solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    color: white;
+    font-size: 66%;
+    font-family: coool;
+    outline: 0;
+    margin-bottom: 20px;
+
+}
+.drp{
+    background-color: #0E6DBC;
+    outline: 0;
+    border-bottom-color: white;
+    border-bottom: 2px;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 100%;
+    color: white;
+    font-size: 66%;
+    font-family: coool;
+    margin-bottom: 20px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+}
+
+
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ccc;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ccc;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #ccc;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:    #ccc;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+    color:    #ccc;
+
+}
+
+/*Footer*/
+footer{
+
+    height: 100px;
+    width: 100%;
+    background-color: #092551;
+    float: left;
+
+
+
+}
+
+footer hr, footer p{
+    margin:1% 2%;
+
+}
+
+/*Button*/
+.btn{
+    width: 120px;
+    height: 70px;
+    margin: 0 auto;
+
+}
+
+#ug2 .btn, #b2 .btn{
+    width: 200px;
+}
+
+.button{
+    color: #008cBA;
+    background-color:transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 4px 2px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    color: white;
+
+}
+#b2 .button, .smallGps .button, .btndark{
+    background-color: #0E6DBC;
+    border-color: transparent;
+
+}
+.btnsave{
+    transition: 0.7s;
+    
+}
+
+.btnsave:hover{
+    border-color: #092551;
+}
+
+
+
+
+.smallGps .button:hover, .small .btndark:hover {
+    background-color: #0E6DBC;
+}
+
+
+
+
+.button:hover{
+    background-color: transparent;
+    color: white;
+
+}
+
+.button:active{
+    background-color: #092551;
+
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+}
+
+
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    color: white;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+
+}	
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;}
+
+#scrlo {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    width: 40px;
+    padding: 10px;
+    background-color: rgba(150,150,150, .8);
+    border-radius: 100px;
+    text-align: center;
+}
+
+#scrlo:hover {
+    background-color: rgba(9,37,81, .7);
+}
+
+.btnsave{
+    margin-top:50px;
+}
+
+/*Navigation*/
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+}
+.sticky + .content {
+    padding-top: 60px;
+}
+
+ul{
+    list-style: none;
+    margin: 0 auto;
+}
+
+ul li{
+    float: left;
+    padding: 1px;
+}
+ul li ul li{
+    float: none;
+}
+
+ul li ul {
+    display: none;
+    margin:0;
+    padding: 0;
+    position: absolute;}
+
+ul li a {
+    display: block;
+    margin: 13px auto;
+    padding: 0 16px;
+    display: block;
+    color: white;}
+
+li:hover ul {
+    display: block;
+    padding-top: 6px;
+    box-shadow: 5px 5px 10px 0 rgba(0,0,0, .16), 5px 5px 10px 0 rgba(0,0,0, .12);
+}
+
+li{
+    ;
+    width: 190px;
+    height: 48px;
+
+}
+li:hover ul a{
+    color: white;
+}
+li:hover ul li{
+
+    background-color: #27a0D3;
+}
+
+ul li ul li:hover{
+    background-color: #092551;
+}
+
+ul li:hover{
+    background-color: #27a0D3;
+}
+
+nav{
+    margin: 0 auto;
+    height: 30px;
+    width: 1050px;
+
+}
+
+#navi{
+    height: 50px;
+    background-color: rgba(9,37,81, .9);
+    z-index: 5;
+
+
+}
+
+ul li a:hover + .hidden, .hidden:hover {
+    display: block;
+}
+
+.show-menu {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+    font-size: 30px;
+    background-color: #092551;
+    height: 50px;
+    font-size: 50px;
+    padding-right: 5%;
+    text-align: right;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+#picBio{
+    background-image: url(../pictures/flo1_small.jpg);
+    background-position: 10% 20%;
+    background-size: 100%
+}
+#suc{
+    display: none;
+}
+
+
+
+@media screen and (max-width: 1500px){
+    #suche{
+        display: none;
+    }
+}
+@media screen and (max-width: 1300px){
+    .bilder{
+        width: 490px;
+        height: calc(490px * 9 / 16);
+    }
+    .gal{
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width : 1024px){
+
+   
+    #sucheM{
+        display: block;
+    }
+    #suc{
+        display: block;
+    }
+
+
+
+    .contFormular{
+        width: 80%;
+        padding-bottom: 0;
+        margin: 10px auto;
+    }
+
+    .gal{
+        width: 760px;
+        margin: 0 auto;
+    }
+    .bilder{
+        width: 100%;
+        height: calc(760px * 9 /16);
+
+    }
+    .formular{
+        padding: 10%;
+    }
+    #karte{
+        float: none;
+        width: 100%;
+    }
+    #ol{
+        float: none;
+        width: 100%;
+    }
+
+    #picgps{
+        display: none;
+    }
+    #welcome{
+        width: 480px;
+        height: 270px;
+    }
+    .big p, .big h1{
+        width: 444px;}
+
+    #header_pic{
+        height:1px;
+        background-image: none;
+        background-color: #092551
+    }
+
+    ul {
+        position: static;
+        display: none;
+    }
+
+    li {
+        margin-bottom: 1px;
+
+    }
+
+    ul li, li a {
+        width: 95%;
+
+    }
+    ul li{
+        background-color: rgba(9,37,81, .932);
+        margin: 0
+
+    }
+
+    li ul li {
+        display: none;
+        float: left;
+
+    }
+
+    .show-menu {
+        display:block;
+    }
+    #navi{
+        background-color: transparent;
+    }
+    nav{
+        width: 100%;
+    }
+    #content{
+
+        margin: 30px 0 30px 5%;
+        width: 90%;
+        float: left;
+    }
+
+    #welcome{
+        margin: 0 auto;
+        width: 691px;
+    }
+    .big p, .big h1{
+        width: 90%;}
+
+    .small,.smallGps{
+        margin: 10px auto;
+        width: 691px;
+        height: 388px;
+
+
+    }
+    #b1,#b2,#b3,#b4,#ug1,#ug2{float: none;}
+
+    .left, .right{float: none;}
+
+    .art{
+        height: 300px;
+    }
+    .art p, .art h2{
+        width: 500px;
+    }
+    p{font-size: 110%}
+    h2{font-size: 200%}
+    .training{
+        margin-bottom: 250px;   
+    }
+    #b3 h2{
+        padding: 10px 95px
+    }
+    .show-menu{
+        background-color: rgba(9,37,81, .932)
+    }
+}
+
+@media screen and (max-width : 767px){
+
+    .gal{
+        width: 480px;
+
+
+    }
+    .bilder{
+        height: calc(480px *9/16);
+    }
+    #welcome, .small, .smallGps{
+        margin: 10px auto;
+        width: 460px;
+        height: 259px;
+
+    }
+
+    #content{
+        margin-left: 2%;
+        width: 96%;
+    }
+    .big p{
+        padding-top: 10px;
+    }
+
+    .art{
+        height: 200px;
+    }
+    .art p, .art h2{
+        width: 400px;
+    }
+    p{font-size: 100%}
+    h2{font-size: 160%}
+    .contText h1{
+        font-size: 250%;}
+    .training{
+        margin-bottom: 140px;
+    }
+    #b3 h2{
+        padding: 10px 30px; 
+    }
+
+}
+
+@media screen and (max-width : 479px){
+    .gal{
+        width: 360px;
+    }
+    .bilder{
+
+        height: calc(360px*9/16);
+    }
+    .contFormular{
+        width: 96%;
+    }
+    #welcome{
+        display: none;
+    }
+    #content{
+        margin-top: 20px;
+    }
+
+    .small, .smallGps{
+        margin: 10px auto;
+        width: 345px;
+        height: 194px;
+
+    }
+    .art p, .art h2{
+        width: 345px;
+        padding-top: 15px;
+
+    }
+    ul li, li a {
+        width: 90%;
+    }
+    .art{
+        height: 130px;
+    }
+    #b1{
+        padding: 0;
+    }
+    .training{
+        margin-bottom: 88px;
+    }
+    .contText h1{
+        font-size: 200%;}
+
+    #b3 h2{
+        width: 345px;
+        padding: 10px 0;
+    }
+    #picBio{
+        background-size:auto;
+    }
+
+}
+@media screen and (max-width : 359px){
+    .small, .smallGps{
+        margin: 10px auto;
+        width: 100%;
+        height: 230px;
+        background-size: 150%;}
+    .art p, .art h2{
+        width: 100%;
+
+    }
+    .art{
+        height: 160px;
+    }
+    .gal{
+        width: 100%;
+    }
+    #b3 h2{
+        width: 100%
+    }
+
+}
+
+#suche ,#sucheM{
+    width: 90px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1.2em;
+    transition: width 0.5s ease-in-out;
+    float: right;
+    margin: 10px 2% 0 0;
+    background-color:transparent;
+    padding-left: 10px;
+    color: white;
+    outline: 0;
+
+}
+
+#suche:focus {
+
+    width: 200px;
+    color: white;
+}
+
+#sucheM{
+    float: left;
+    margin-left: 20px
+}
+#sucheM:focus{
+    width: calc(100% - 40px);
+}
+
+#imp1,#imp2{
+    width: 45%;
+    height: 200px;
+}
+#imp2{
+    float: right;
+    background-color: #0E6DBC
+}
+#imp1{
+    float: left;
+    background-color: #27a0D3;
+}
+
+#imp1 p,#imp2 p{
+    width: 100%
+}
+#imp1 h2 , #imp2 h2{
+    width: 100%;
+}
+#picImp{
+    background-image: url(../pictures/t2_small.jpg);
+    background-position: 50% 45%;
+}
