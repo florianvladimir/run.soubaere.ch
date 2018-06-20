@@ -21,19 +21,15 @@
     </div>
 
     <div class="small" id="b2">
+        <h2 class="dark centerTxt">Neue Einheit</h2>
 
-        <article class="art">
-
-            <h2 class="dark">OL-Datenbank</h2>
-            <p class="dark">Alle Informationen zu einem OL Trining erfassen und zentral Speichern.
-                dies ist dank der OL-Datenbank möglich. </p>
-
-        </article>
-        <div class="btn">
-            <a href="newrun.php">
-                <div  class="button btndark" ><span>Lauf erfassen</span></div></a>
+        <div class="btn btnnewrunto">
+            <div  id="" class="button btndark" ><span>Einheit Planen</span></div></a>
+            <div  id="btnnewrun" class="button btndark" ><span>Einheit erfassen</span></div></a>
         </div>
+
     </div>
+
     <div class="small" id="b3">
 
         <article class="art">
@@ -57,5 +53,36 @@
 
     </div>
 
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Neue Einheit erfassen</h2>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Bitte wähle das GPX-File der Einheit aus</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                    <div class="btn">
+                        <a href="detailansicht.php">
+                            <div class="btndark"><span>Weiter</span></div></a>
+                    </div>
+                </div>
+                <a href="newrun">lade die Einheit manuell hoch.</a>
+            </div>
+            <div class="modal-footer">
+                <h3></h3>
+            </div>
+        </div>
+
+
+    </div>
 
 </main>

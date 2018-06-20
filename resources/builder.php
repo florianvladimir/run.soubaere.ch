@@ -10,7 +10,9 @@ function build($file, $script=false)
         <title>moserflorian.ch</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/newrun.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     </head>
     <body>
@@ -60,8 +62,10 @@ function build($file, $script=false)
     </footer>
     <button onclick="topFunction()" id="scrlo" class="button" title="go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
 
-    <script src="../js/navjs.js" type="text/javascript"></script>
-    <script src="../js/btnUp.js" type="text/javascript"></script>
+    <script src="js/navjs.js" type="text/javascript"></script>
+    <script src="js/btnUp.js" type="text/javascript"></script>
+    <script src="js/newrun.js" type="text/javascript"></script>
+
     </body>
 </html>
 <?php

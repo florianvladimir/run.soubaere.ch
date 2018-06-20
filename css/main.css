@@ -388,6 +388,12 @@ footer hr, footer p{
     width: 200px;
 }
 
+.btnnewrunto{
+    height: 140px;
+    margin-top: 100px;
+
+}
+
 .button{
     color: #008cBA;
     background-color:transparent;
@@ -605,6 +611,11 @@ input[type=checkbox]:checked ~ #menu{
     display: none;
 }
 
+/*Kachel neuer Eintrag*/
+.centerTxt{
+    text-align: center;
+    margin-bottom: 50px;
+}
 
 
 @media screen and (max-width: 1500px){
@@ -620,6 +631,9 @@ input[type=checkbox]:checked ~ #menu{
     .gal{
         width: 1000px;
     }
+
+
+
 }
 
 @media screen and (max-width : 1024px){
@@ -754,6 +768,8 @@ input[type=checkbox]:checked ~ #menu{
     .show-menu{
         background-color: rgba(9,37,81, .932)
     }
+
+
 }
 
 @media screen and (max-width : 767px){
@@ -852,8 +868,16 @@ input[type=checkbox]:checked ~ #menu{
         background-size:auto;
     }
 
+    .btnnewrunto{
+        height: 140px;
+        margin-top: 0px;
+
+    }
+
+
 }
 @media screen and (max-width : 359px){
+
     .small, .smallGps{
         margin: 10px auto;
         width: 100%;
@@ -872,7 +896,14 @@ input[type=checkbox]:checked ~ #menu{
     #b3 h2{
         width: 100%
     }
+    .btnnewrunto{
+        height: 140px;
+        margin-top: 10px;
 
+
+
+
+    }
 }
 
 #suche ,#sucheM{
