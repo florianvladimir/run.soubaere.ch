@@ -1,7 +1,17 @@
+<?php
+print_r($_SESSION['aktGPXname']);
+echo $_SESSION['aktGPXn']['Distanz'];
+?>
 <main id="content">
     <article class="contFormular">
         <div class="formular">
-            <form>
+            <select id="sportart" class="drp" name="sportart" onchange="showUpload()">
+                <option  value="0" selected="selected">Sportart auswählen</option>
+                <option value="1">Oreintierungslauf</option>
+                <option value="2">Dauerlauf</option>
+                <option value="3">Andere Aktivität</option>
+            </select>
+            <form id="sportat-ol" class="backgrundGrayTransparent">
                 <div id="karte">
                     <p>Karte:</p>
                     <input type="text" name='nameK' class='inp' placeholder="Name" required>
@@ -41,11 +51,70 @@
                         <option value="5">Staffel</option>
                         <option value="6">Nacht-OL</option>
                     </select>
-                    <input type="text" name='distanz' class='inp' placeholder="Distanz in KM" required>
+                    <?php if(!isset($_SESSION['aktGPXn']['Distanz'])){?>
+                        <input type="text" name='distanz' class='inp' placeholder="Distanz in KM"  required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['time'])){?>
                     <input type="text" name='dauer' class='inp' placeholder="Dauer in Min" required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['Datum'])){?>
                     <input type="text" name='datum' class='inp' placeholder="Datum: 2001-07-11" required>
+                    <?php } ?>
+
                 </div><div class="btn">
-                    <input type="submit" class="button btnsave"></inut>
+                    <input type="submit" class="button btnsave" value="Speichern"></inut>
+                </div>
+            </form>
+            <form id="sportat-dl" class="backgrundGrayTransparent">
+                <div id="karte">
+                    <p>Dauerlauf:</p>
+                    <input type="text" name='nameK' class='inp' placeholder="Name" required>
+                    <select class="drp" id="gGr" name="Gelaende_grob" >
+                        <option  value="0" selected="selected">Form</option>
+                        <option value="1">Intervall</option>
+                        <option value="2">schneller DL</option>
+                        <option value="3">mittlerer DL</option>
+                        <option value="4">langsamer DL</option>
+                        <option value="5">Footing</option>
+                    </select>
+                    <?php if(!isset($_SESSION['aktGPXn']['Distanz'])){?>
+                        <input type="text" name='distanz' class='inp' placeholder="Distanz in KM"  required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['time'])){?>
+                        <input type="text" name='dauer' class='inp' placeholder="Dauer in Min" required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['Datum'])){?>
+                        <input type="date" name='datum' class='inp' placeholder="Datum: 2001-07-11" required>
+                    <?php } ?>
+                </div>
+                <div class="btn">
+                    <input type="submit" class="button btnsave" value="Speichern"></inut>
+                </div>
+            </form>
+            <form id="sportat-anders" class="backgrundGrayTransparent">
+                <div id="karte">
+                    <p>Andere Aktivität:</p>
+                    <input type="text" name='nameK' class='inp' placeholder="Name" required>
+                    <select class="drp" id="gGr" name="Gelaende_grob" >
+                        <option  value="0" selected="selected">Intensität</option>
+                        <option value="1">regenerativ</option>
+                        <option value="2">extensiv</option>
+                        <option value="3">mittel</option>
+                        <option value="4">intensiv</option>
+                        <option value="5">überschwellig</option>
+                    </select>
+                    <?php if(!isset($_SESSION['aktGPXn']['Distanz'])){?>
+                        <input type="text" name='distanz' class='inp' placeholder="Distanz in KM"  required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['time'])){?>
+                        <input type="text" name='dauer' class='inp' placeholder="Dauer in Min" required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['Datum'])){?>
+                        <input type="date" name='datum' class='inp' placeholder="Datum: 2001-07-11" required>
+                    <?php } ?>
+                </div>
+                <div class="btn">
+                    <input type="submit" class="button btnsave" value="Speichern"></inut>
                 </div>
             </form>
         </div>

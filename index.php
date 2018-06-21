@@ -33,6 +33,9 @@ if(!empty($url[1])){
         case 'newrun':
             build('newrun.php');
             break;
+        case 'newrunselect':
+            build('newrun2.php');
+            break;
         case 'impressum':
             build('impressum.php');
             break;
