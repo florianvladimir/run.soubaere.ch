@@ -66,14 +66,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Bitte wähle das GPX-File der Einheit aus</span>
                     </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                    <div class="btn">
-                        <a href="detailansicht.php">
-                            <div class="btndark"><span>Weiter</span></div></a>
-                    </div>
+                    <form action="uploadgpx" method="post" enctype="multipart/form-data">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="gpxfile">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                        <input type="submit" class="custom-file-input" id="btnWeiterFile" value="Weiter">
+                        <label class="custom-file-label" for="btnWeiterFile">Weiter</label>
+                    </form>
                 </div>
                 <a href="newrun">lade die Einheit manuell hoch.</a>
             </div>

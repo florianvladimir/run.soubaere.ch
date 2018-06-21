@@ -36,12 +36,9 @@ if(!empty($url[1])){
         case 'impressum':
             build('impressum.php');
             break;
-        /*
-        case 'unsetgemerkt':
-            checkLoggedIn();
-            build('unsetGemerkt.php', true);
-            break;*/
-
+        case 'uploadgpx':
+            build('uploadgpx.php', true);
+            break;
         default:
             build('home.php');
             break;
