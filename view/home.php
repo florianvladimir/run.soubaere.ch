@@ -63,19 +63,17 @@
             </div>
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Bitte wähle das GPX-File der Einheit aus</span>
-                    </div>
                     <form action="uploadgpx" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01" name="gpxfile">
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <label class="custom-file-label" for="inputGroupFile01">Bitte wähle das GPX-File der Einheit aus</label>
                         </div>
+                        <br>
                         <input type="submit" class="custom-file-input" id="btnWeiterFile" value="Weiter">
                         <label class="custom-file-label" for="btnWeiterFile">Weiter</label>
                     </form>
                 </div>
-                <a href="newrun">lade die Einheit manuell hoch.</a>
+                <a href="newrun">Kein GPX - lade die Einheit manuell hoch.</a>
             </div>
             <div class="modal-footer">
                 <h3></h3>

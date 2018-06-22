@@ -2,8 +2,8 @@
 session_start();
 
 include_once './resources/builder.php';
-//include_once 'scripts/db_abfragen.php';
-//include_once 'scripts/funktionen.php';
+include_once 'db/db_connection.php';
+include_once 'scripts/functions.php';
 //include_once 'scripts/Change.php';
 
 $temp = trim($_SERVER['REQUEST_URI'], '/');
@@ -41,6 +41,9 @@ if(!empty($url[1])){
             break;
         case 'uploadgpx':
             build('uploadgpx.php', true);
+            break;
+        case 'insertevent':
+            build('insertevent.php', true);
             break;
         default:
             build('home.php');

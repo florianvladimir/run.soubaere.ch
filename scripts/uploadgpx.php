@@ -28,8 +28,8 @@ if (in_array($fileActualExt, $allowed)) {
             $fileNameNew = uniqid('', true) . $fileExt[0] . "." . $fileActualExt;
             $fileDest = $target_dir . $fileNameNew;
             move_uploaded_file($fileTempName, $fileDest);
-            $_SESSION["aktGPXDest"] = $fileDest;
-            $_SESSION["aktGPXname"] = $fileName;
+            $_SESSION['aktGPXn']['destination'] = $fileDest;
+            $_SESSION['aktGPXn']['nameFile'] = $fileName;
         } else {
             echo "Ds Biud isch ds gross";
             echo $fileSize;
@@ -40,6 +40,10 @@ if (in_array($fileActualExt, $allowed)) {
     }
 } else {
     echo "Fail fausches Format";
+    echo ("<SCRIPT LANGUAGE='JavaScript'>
+        window.alert('Bitte wähle ein GPX-File aus');
+        window.location.href='home';
+        </SCRIPT>");
 }
 
 $xml=simplexml_load_file($fileDest) or die("Error: Cannot create object");
@@ -53,11 +57,12 @@ $distance = (string) $gpxext->distance;
 //Zeit
 $zeitStart = $xml->trk->trkseg->trkpt[0]->time;
 $zeitEnde = $xml->trk->trkseg->trkpt[$len]->time;
-
-$zeitStart=dataToTinme($zeitStart);
-$zeitEnde=dataToTinme($zeitEnde);
+$datum=dataToTinme($zeitStart,false);
+$zeitStart=dataToTinme($zeitStart,true);
+$zeitEnde=dataToTinme($zeitEnde,true);
 
 $zeit=getRunTime($zeitStart,$zeitEnde);
+
 //Höhe
 $verticalheight=0;
 $altitudeold=123456789;
@@ -86,19 +91,32 @@ echo "Höhe: ".$verticalheight;
 echo "<br>";
 echo "Zeit: ";
 echo $zeit;
+echo "<br>";
+echo "Datum: ".$datum;
 
 $_SESSION['aktGPXn']['Distanz']=$distance/1000;
 $_SESSION['aktGPXn']['verticalheight']=$verticalheight;
 $_SESSION['aktGPXn']['time']=$zeit;
+$_SESSION['aktGPXn']['Datum']=$datum;
 
 
+insertBasicInfo();
 
 header("Location: newrun");
 
 
-function dataToTinme($datum){
-    $zeit = explode('T', $datum)[1];
-    $zeit = explode('.',$zeit)[0];
+function dataToTinme($datum,$bool){
+    if($bool){
+        $zeit = explode('T', $datum)[1];
+        $zeit = explode('.',$zeit)[0];}
+    else{
+        echo $datum;
+        $splitz = explode('T', $datum);
+        $zeitk = $splitz[1];
+        $zeitk = explode('.',$zeitk)[0];
+        $datum = $splitz[0];
+        $zeit = $datum." ".$zeitk;
+    }
     return $zeit;
 }
 

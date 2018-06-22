@@ -1,7 +1,3 @@
-<?php
-print_r($_SESSION['aktGPXname']);
-echo $_SESSION['aktGPXn']['Distanz'];
-?>
 <main id="content">
     <article class="contFormular">
         <div class="formular">
@@ -11,13 +7,14 @@ echo $_SESSION['aktGPXn']['Distanz'];
                 <option value="2">Dauerlauf</option>
                 <option value="3">Andere Aktivität</option>
             </select>
-            <form id="sportat-ol" class="backgrundGrayTransparent">
+            <form id="sportat-ol" class="backgrundGrayTransparent" action="insertevent" method="post">
+                <?php $_SESSION["sportart"]=1;?>
                 <div id="karte">
                     <p>Karte:</p>
                     <input type="text" name='nameK' class='inp' placeholder="Name" required>
                     <input type="text" name='ort' class='inp' placeholder="Ort" required>
                     <input type="text" name='stand' class='inp' placeholder="Stand" required>
-                    <input type="text" name='stand' class='inp' placeholder="Massstab" required>
+                    <input type="text" name='massstab' class='inp' placeholder="Massstab" required>
                     <select class="drp" id="gGr" name="Gelaende_grob" >
                         <option  value="0" selected="selected">Gelände grob</option>
                         <option value="1">technisch anspruchsvoll</option>
@@ -31,7 +28,6 @@ echo $_SESSION['aktGPXn']['Distanz'];
                         <option value="2">Alpin</option>
                         <option value="3">Mittelland</option>
                     </select>
-                    <input type="text" name='stand' class='inp' placeholder="Ordner" >
                 </div>
                 <div id="ol">
                     <p>OL:</p>
@@ -55,21 +51,25 @@ echo $_SESSION['aktGPXn']['Distanz'];
                         <input type="text" name='distanz' class='inp' placeholder="Distanz in KM"  required>
                     <?php } ?>
                     <?php if(!isset($_SESSION['aktGPXn']['time'])){?>
-                    <input type="text" name='dauer' class='inp' placeholder="Dauer in Min" required>
+                    <input type="text" name='dauer' class='inp' placeholder="Dauer: 0:55'17" required>
                     <?php } ?>
                     <?php if(!isset($_SESSION['aktGPXn']['Datum'])){?>
                     <input type="text" name='datum' class='inp' placeholder="Datum: 2001-07-11" required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['verticalheight'])){?>
+                        <input type="text" name='verticalheight' class='inp' placeholder="Höhenmeter in Meter" required>
                     <?php } ?>
 
                 </div><div class="btn">
                     <input type="submit" class="button btnsave" value="Speichern"></inut>
                 </div>
             </form>
-            <form id="sportat-dl" class="backgrundGrayTransparent">
+            <form id="sportat-dl" class="backgrundGrayTransparent" action="insertevent" method="post">
+                <?php $_SESSION["sportart"]=2;?>
                 <div id="karte">
                     <p>Dauerlauf:</p>
                     <input type="text" name='nameK' class='inp' placeholder="Name" required>
-                    <select class="drp" id="gGr" name="Gelaende_grob" >
+                    <select class="drp" id="gGr" name="DL_Form" >
                         <option  value="0" selected="selected">Form</option>
                         <option value="1">Intervall</option>
                         <option value="2">schneller DL</option>
@@ -86,16 +86,20 @@ echo $_SESSION['aktGPXn']['Distanz'];
                     <?php if(!isset($_SESSION['aktGPXn']['Datum'])){?>
                         <input type="date" name='datum' class='inp' placeholder="Datum: 2001-07-11" required>
                     <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['verticalheight'])){?>
+                        <input type="text" name='verticalheight' class='inp' placeholder="Höhenmeter in Meter" required>
+                    <?php } ?>
                 </div>
                 <div class="btn">
                     <input type="submit" class="button btnsave" value="Speichern"></inut>
                 </div>
             </form>
-            <form id="sportat-anders" class="backgrundGrayTransparent">
+            <form id="sportat-anders" class="backgrundGrayTransparent" action="insertevent" method="post">
+                <?php $_SESSION["sportart"]=3;?>
                 <div id="karte">
                     <p>Andere Aktivität:</p>
                     <input type="text" name='nameK' class='inp' placeholder="Name" required>
-                    <select class="drp" id="gGr" name="Gelaende_grob" >
+                    <select class="drp" id="gGr" name="Intens_Select" >
                         <option  value="0" selected="selected">Intensität</option>
                         <option value="1">regenerativ</option>
                         <option value="2">extensiv</option>
@@ -111,6 +115,9 @@ echo $_SESSION['aktGPXn']['Distanz'];
                     <?php } ?>
                     <?php if(!isset($_SESSION['aktGPXn']['Datum'])){?>
                         <input type="date" name='datum' class='inp' placeholder="Datum: 2001-07-11" required>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['aktGPXn']['verticalheight'])){?>
+                        <input type="text" name='verticalheight' class='inp' placeholder="Höhenmeter in Meter" required>
                     <?php } ?>
                 </div>
                 <div class="btn">
