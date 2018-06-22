@@ -68,10 +68,10 @@ function insertBasicInfo(){
     $_SESSION["randomIDofBasicI"]=$id;
 
     //Vorbereiten des Queries
-    $statement = $db->prepare('INSERT INTO basicinfoevent (Datum,Zeit,Distanz,hoehe,stringID) VALUES (?,?,?,?,?)');
+    $statement = $db->prepare('INSERT INTO basicinfoevent (Datum,Zeit,Distanz,hoehe,hr,stringID) VALUES (?,?,?,?,?,?)');
 
     //Daten an das Query binden
-    $statement->bind_param('sssss', $data['Datum'], $data['time'], $data['Distanz'], $data['verticalheight'],$id);
+    $statement->bind_param('ssssss', $data['Datum'], $data['time'], $data['Distanz'], $data['verticalheight'],$data['hr'],$id);
 
     //Ausführen + Erfolgsmeldung
     if($statement->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
@@ -278,4 +278,51 @@ function selectDetailInfoAndersIDByStringID($stringID){
     }
 
     return $resID;
+}
+
+function selectEinheitByBasicDetailID($basicInfoID){
+    $db = connect();
+    $sql= "SELECT * FROM basic_detail join basicinfoevent on basicinfo_ID=ID_BasicInfo WHERE ID_Basic_Detail = '".$basicInfoID."'";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0)
+    {
+        // output data of each row
+        while($row = $result->fetch_assoc())
+        {
+            $res['basicInfo']['Datum']= $row["Datum"];
+            $res['basicInfo']['Zeit']= $row["Zeit"];
+            $res['basicInfo']['Distanz']= $row["Distanz"];
+            $res['basicInfo']['hoehe']= $row["hoehe"];
+            $res['basicInfo']['hr']= $row["hr"];
+            if(isset($row['detailinfool_ID'])){
+                selectEinheitOLByID($row['detailinfool_ID']);
+            }
+            elseif(isset($row['detailinfodl_ID'])){
+                selectEinheitDLByID($row['detailinfodl_ID']);
+            }
+            elseif(isset($row['detailinfoanders_ID'])){
+                $res['detailInfo']=selectEinheitAndersByID($row['detailinfoanders_ID']);
+                $res['Sportart']=3;
+            }
+
+        }
+    }
+
+    return $res;
+}
+
+function selectEinheitAndersByID($id){
+    $db = connect();
+    $sql= "SELECT * FROM detailinfoeventanders join intensitaet on Intens_ID=ID_Intens WHERE ID_DetailInfoAnders = '".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res['Name']=$row["NameDetailInfoAnders"];
+            $res['Intens']=$row['NameIntens'];
+        }
+    }
+    return $res;
+
 }

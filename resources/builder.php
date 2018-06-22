@@ -12,6 +12,7 @@ function build($file, $script=false)
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/newrun.css">
         <link rel="stylesheet" href="css/upload.css">
+        <link rel="stylesheet" href="css/detailansicht.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -67,6 +68,7 @@ function build($file, $script=false)
     <script src="js/btnUp.js" type="text/javascript"></script>
     <script src="js/newrun.js" type="text/javascript"></script>
     <script src="js/upload.js" type="text/javascript"></script>
+    <script src="js/detailansicht.js" type="text/javascript"></script>
     </body>
 </html>
 <?php

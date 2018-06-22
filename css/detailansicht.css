@@ -1,0 +1,45 @@
+.basicInfo{
+    width: 100%;
+    height: 120px;
+    background-color: #0e5ca8;
+    padding: 20px 0px;
+}
+.basicInfoElement{
+    width: 150px;
+    height: 100%;
+    border-top: solid 3px white;
+    border-bottom: solid 3px white;
+    float: left;
+    margin: 0 10px;
+}
+
+
+.InfoTitel{
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+}
+.grossInfoTitel{
+    font-size: 110%;
+}
+
+.kursiv{
+    font-style:italic;
+}
+
+.contText h1{
+    margin-top: 15px;
+}
+
+#basicinfoCenter{
+    width: 680px;
+    margin: 0 auto;
+    height: 100%;
+}
+.basicInfoInfo{
+    font-size: 150%;
+    text-align: center;
+    color: white;
+    margin: 10px auto;
+    font-weight: bold;
+}

@@ -78,12 +78,23 @@ foreach($a as $aa){
     if($altitudenew!=0){
         $altitudeold=$altitudenew;
     }
-
-
-
-
-
 }
+
+$avgHr=0;
+//HR
+try {
+    foreach ($a as $blabla) {
+        $namespace2 = $blabla->getNamespaces(true);
+        $gpxext2 = $blabla->extensions->children($namespace['gpxtpx']);
+        $hr = $gpxext2->TrackPointExtension->hr;
+        $avgHr = $avgHr + $hr;
+    }
+    $avgHr = round($avgHr / $len);
+}
+catch (Exception $e){
+    $avgHr = '-';
+}
+
 echo "<br>";
 echo "Distanz: ".$distance;
 echo "<br>";
@@ -93,11 +104,14 @@ echo "Zeit: ";
 echo $zeit;
 echo "<br>";
 echo "Datum: ".$datum;
+echo "<br>";
+echo "HR: ".$avgHr;
 
 $_SESSION['aktGPXn']['Distanz']=$distance/1000;
 $_SESSION['aktGPXn']['verticalheight']=$verticalheight;
 $_SESSION['aktGPXn']['time']=$zeit;
 $_SESSION['aktGPXn']['Datum']=$datum;
+$_SESSION['aktGPXn']['hr']=$avgHr;
 
 
 insertBasicInfo();
@@ -121,14 +135,22 @@ function dataToTinme($datum,$bool){
 }
 
 function getRunTime($start,$ende){
-    $startA=explode(':',$start);
+    /*$startA=explode(':',$start);
     $endeA=explode(':',$ende);
     $stunde=(int)$endeA[0]-(int)$startA[0];
-    $minute=$endeA[1]-$startA[1];
+    $minute=(int)$endeA[1]-(int)$startA[1];
     $minute=addZero($minute);
-    $sekunden=$endeA[2]-$startA[2];
-    $sekunden=addZero($sekunden);
-    return $stunde.":".$minute."'".$sekunden;
+    $sekunden=(int)$endeA[2]-(int)$startA[2];
+    $sekunden=addZero($sekunden);*/
+    $firstTime=strtotime($start);
+    $lastTime=strtotime($ende);
+
+// perform subtraction to get the difference (in seconds) between times
+    $timeDiff=$lastTime-$firstTime;
+    $res=timespanArray($timeDiff);
+    $minute=addZero($res['min']);
+    $sekunden=addZero($res['sec']);
+    return $res['std'].":".$minute."'".$sekunden;
 }
 
 function addZero($zeit){
@@ -138,4 +160,19 @@ function addZero($zeit){
     else{
         return $zeit;
     }
+}
+
+function timespanArray( $seconds ){
+
+    $td['total'] = $seconds;
+
+    $td['sec'] = $seconds % 60;
+
+    $td['min'] = (($seconds - $td['sec']) / 60) % 60;
+
+    $td['std'] = (((($seconds - $td['sec']) /60)-
+                $td['min']) / 60) % 24;
+
+    return $td;
+
 }
