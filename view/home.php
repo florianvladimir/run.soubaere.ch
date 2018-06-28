@@ -15,7 +15,7 @@
             <p class="light">Alle erfassten Trainings auf einen Blick:</p>
         </article>
         <div class="btn">
-            <a href="gpsarchiv.php">
+            <a href="gpsarchiv">
                 <div class="button"><span>Mehr</span></div></a>
         </div>
     </div>
@@ -36,7 +36,7 @@
             <h2 class="dark"> zum letzten Eintrag</h2>
         </article>
         <div class="btn">
-            <a href="detailansicht.php">
+            <a href="detailansicht">
                 <div class="button btndark"><span>Mehr </span></div></a>
         </div>
     </div>

@@ -6,6 +6,7 @@
  * Time: 09:01
  */
 
+
 $target_dir = "uploads/gpx/";
 
 
@@ -82,6 +83,7 @@ foreach($a as $aa){
 
 $avgHr=0;
 //HR
+
 try {
     foreach ($a as $blabla) {
         $namespace2 = $blabla->getNamespaces(true);
@@ -94,7 +96,7 @@ try {
 catch (Exception $e){
     $avgHr = '-';
 }
-
+/*
 echo "<br>";
 echo "Distanz: ".$distance;
 echo "<br>";
@@ -105,18 +107,22 @@ echo $zeit;
 echo "<br>";
 echo "Datum: ".$datum;
 echo "<br>";
-echo "HR: ".$avgHr;
+echo "HR: ".$avgHr;*/
 
-$_SESSION['aktGPXn']['Distanz']=$distance/1000;
+$_SESSION['aktGPXn']['Distanz']=round($distance/1000,2,PHP_ROUND_HALF_UP);
 $_SESSION['aktGPXn']['verticalheight']=$verticalheight;
 $_SESSION['aktGPXn']['time']=$zeit;
 $_SESSION['aktGPXn']['Datum']=$datum;
 $_SESSION['aktGPXn']['hr']=$avgHr;
+$_SESSION['aktGPXn']['file']=$fileDest;
 
 
 insertBasicInfo();
 
-header("Location: newrun");
+echo ("<SCRIPT LANGUAGE='JavaScript'>
+        //window.alert('Bitte wähle ein GPX-File aus');
+        window.location.href='newrun';
+        </SCRIPT>");
 
 
 function dataToTinme($datum,$bool){
@@ -124,7 +130,7 @@ function dataToTinme($datum,$bool){
         $zeit = explode('T', $datum)[1];
         $zeit = explode('.',$zeit)[0];}
     else{
-        echo $datum;
+        //echo $datum;
         $splitz = explode('T', $datum);
         $zeitk = $splitz[1];
         $zeitk = explode('.',$zeitk)[0];

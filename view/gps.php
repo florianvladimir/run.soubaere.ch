@@ -10,7 +10,7 @@
             <h2 class="light">Alle OL-Trianings auf einen Blick</h2>
         </article>
         <div class="btn">
-            <a href="gpsarchiv.php">
+            <a href="gpsarchiv">
                 <div class="button">
                     <span>Mehr</span>
                 </div>
@@ -23,7 +23,7 @@
             <h2 class="dark">Einen neuen Lauf erfassen</h2>
         </article>
         <div class="btn">
-            <a href="newrun.php">
+            <a href="newrun">
                 <div  class="button btndark" ><span>Lauf erfassen</span></div></a>
         </div>
     </div>

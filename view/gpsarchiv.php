@@ -1,94 +1,59 @@
 <main id="content">
+<?php
+$result = selectallEvent();
+$i=0;
+if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        $info=selectEinheitByBasicDetailID($row['ID_Basic_Detail']);
+        if($i%2==0){
+            htmlUebLeft($info,$row);
+        }
+        else{
+            htmlUebRight($info,$row);
+        }
+        $i++;
+    }
+}
 
+function htmlUebLeft($data,$row){
+    ?>
     <div class="smallGps left" id="gps1">
 
         <article class="training">
-            <h2 class="light">Training: Schatten-OL</h2>
+            <h2 class="light"><?php echo $data['detailInfo']['Name'];?></h2>
 
         </article>
-        <div class="btn">
-            <a href="detailansicht.php">
-                <div class="button"><span>Mehr</span></div></a>
-        </div>
-    </div>
 
+            <div class="btn">
+                <a href="detailansicht?id=<?php echo $row['ID_Basic_Detail']?>">
+                    <div class="button"><span>Mehr</span></div>
+                </a>
+            </div>
+
+    </div>
+    <?php
+}
+
+
+function htmlUebRight($data,$row){
+    ?>
     <div class="smallGps right" id="gps2">
 
         <article class="training">
-            <h2 class="light">OL Datenbank</h2>
+            <h2 class="light"><?php echo $data['detailInfo']['Name'];?></h2>
 
         </article>
         <div class="btn">
-
+            <a href="detailansicht?id=<?php echo $row['ID_Basic_Detail']?>">
                 <div  class="button" ><span>Mehr</span></div>
+            </a>
         </div>
     </div>
-    <div class="smallGps left" id="gps3">
+    <?php
+}
+?>
 
-        <article class="training">
-            <h2 class="light">OL Datenbank</h2>
-
-        </article>
-        <div class="btn">
-            <div class="button"><span>Mehr </span></div>
-        </div>
-    </div>
-
-    <div class="smallGps right" id="gps4">
-
-        <article class="training">
-            <h2 class="light">OL Datenbank</h2>
-
-        </article>
-        <div class="btn">
-            <div class="button"><span>Mehr </span></div>
-        </div>
-    </div>
-
-    <div class="smallGps left" id="gps5">
-
-        <article class="training">
-            <h2 class="light">Gsdfsdfsdfs</h2>
-
-        </article>
-        <div class="btn">
-
-                <div class="button"><span>Mehr</span></div>
-        </div>
-    </div>
-
-    <div class="smallGps right" id="gps6">
-
-        <article class="training">
-            <h2 class="light">OL Datenbank</h2>
-
-        </article>
-        <div class="btn">
-
-                <div  class="button" ><span>Mehr</span></div>
-        </div>
-    </div>
-    <div class="smallGps left" id="gps7">
-
-        <article class="training">
-            <h2 class="light">OL Datenbank</h2>
-
-        </article>
-        <div class="btn">
-            <div class="button"><span>Mehr </span></div>
-        </div>
-    </div>
-
-    <div class="smallGps right" id="gps8">
-
-        <article class="training">
-            <h2 class="light">Alle Einträge anzeigen</h2>
-
-        </article>
-        <div class="btn">
-            <div class="button"><span>Mehr</span></div>
-        </div>
-    </div>
 
 
 </main>

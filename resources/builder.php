@@ -63,12 +63,14 @@ function build($file, $script=false)
             Florian Moser<p>
     </footer>
     <button onclick="topFunction()" id="scrlo" class="button" title="go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-
+    <script src="js/openstreetmap.js" type="text/javascript"/>
     <script src="js/navjs.js" type="text/javascript"></script>
     <script src="js/btnUp.js" type="text/javascript"></script>
     <script src="js/newrun.js" type="text/javascript"></script>
     <script src="js/upload.js" type="text/javascript"></script>
     <script src="js/detailansicht.js" type="text/javascript"></script>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
     </body>
 </html>
 <?php

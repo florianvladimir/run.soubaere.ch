@@ -21,3 +21,20 @@ function dataIsset($data,$string){
     }
     return $data[$string];
 }
+
+function getCoord($file){
+    $result="";
+    $xml = simplexml_load_file($file) or die("Error: Cannot create object");
+    foreach($xml->trk->trkseg->trkpt[0]->attributes() as $a => $b) {
+        //echo $a,'="',$b,"\"\n";
+        if($a=="lat"){
+            $result=$b;
+        }
+        elseif ($a=="lon"){
+            $result=$result.", ".$b;
+        }
+
+    }
+    //echo $result;
+    return $result.", '".$file."'";
+}

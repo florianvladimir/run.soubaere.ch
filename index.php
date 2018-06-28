@@ -11,6 +11,7 @@ $url = explode('/', $temp);
 
 if(!empty($url[1])){
     $url[1]=strtolower($url[1]);
+    $url[1]=explode('?',$url[1])[0];
     switch ($url[1]){
         case 'bio':
             build('bio.php');

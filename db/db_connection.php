@@ -68,10 +68,10 @@ function insertBasicInfo(){
     $_SESSION["randomIDofBasicI"]=$id;
 
     //Vorbereiten des Queries
-    $statement = $db->prepare('INSERT INTO basicinfoevent (Datum,Zeit,Distanz,hoehe,hr,stringID) VALUES (?,?,?,?,?,?)');
+    $statement = $db->prepare('INSERT INTO basicinfoevent (Datum,Zeit,Distanz,hoehe,hr,stringID,filedest) VALUES (?,?,?,?,?,?,?)');
 
     //Daten an das Query binden
-    $statement->bind_param('ssssss', $data['Datum'], $data['time'], $data['Distanz'], $data['verticalheight'],$data['hr'],$id);
+    $statement->bind_param('sssssss', $data['Datum'], $data['time'], $data['Distanz'], $data['verticalheight'],$data['hr'],$id,$data['file']);
 
     //Ausführen + Erfolgsmeldung
     if($statement->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
@@ -280,6 +280,10 @@ function selectDetailInfoAndersIDByStringID($stringID){
     return $resID;
 }
 
+/**
+ * @param $basicInfoID
+ * @return mixed
+ */
 function selectEinheitByBasicDetailID($basicInfoID){
     $db = connect();
     $sql= "SELECT * FROM basic_detail join basicinfoevent on basicinfo_ID=ID_BasicInfo WHERE ID_Basic_Detail = '".$basicInfoID."'";
@@ -294,12 +298,16 @@ function selectEinheitByBasicDetailID($basicInfoID){
             $res['basicInfo']['Zeit']= $row["Zeit"];
             $res['basicInfo']['Distanz']= $row["Distanz"];
             $res['basicInfo']['hoehe']= $row["hoehe"];
+            $res['basicInfo']['file']=$row['filedest'];
+            if($row)
             $res['basicInfo']['hr']= $row["hr"];
             if(isset($row['detailinfool_ID'])){
-                selectEinheitOLByID($row['detailinfool_ID']);
+                $res['detailInfo']=selectEinheitOLByID($row['detailinfool_ID']);
+                $res['Sportart']=1;
             }
             elseif(isset($row['detailinfodl_ID'])){
-                selectEinheitDLByID($row['detailinfodl_ID']);
+                $res['detailInfo']=selectEinheitDLByID($row['detailinfodl_ID']);
+                $res['Sportart']=2;
             }
             elseif(isset($row['detailinfoanders_ID'])){
                 $res['detailInfo']=selectEinheitAndersByID($row['detailinfoanders_ID']);
@@ -325,4 +333,45 @@ function selectEinheitAndersByID($id){
     }
     return $res;
 
+}
+
+function selectEinheitDlByID($id){
+    $db = connect();
+    $sql= "SELECT * FROM detailinfoeventdl join dlform on DLForm_ID=ID_DLForm WHERE ID_DetailInfoDl = '".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res['Name']=$row["NameDetailInfoDl"];
+            $res['Intens']=$row['NameDLForm'];
+        }
+    }
+    return $res;
+}
+
+function selectEinheitOLByID($id){
+    $db = connect();
+    $sql= "SELECT * FROM detailinfoeventol join disziplin on ID_Disziplin=Disziplin_ID join deklaration on ID_Deklaration=Deklaration_ID join gelaende on ID_Gelaende=gelaendeGrob_ID join gelaendeFein on ID_GelaendeFein=GelaendeFein_ID WHERE ID_DetailInfo = '".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res['Name']=$row["MapName"];
+            $res['ort']=$row['ort'];
+            $res['stand']=$row['stand'];
+            $res['massstab']=$row['massstab'];
+            $res['gelaendeFein']=$row['NameGelaendeFein'];
+            $res['gelaendeGrob']=$row['NameGelaende'];
+            $res['deklaration']=$row['NameDeklaration'];
+            $res['disziplin']=$row['NameDisziplin'];
+        }
+    }
+    return $res;
+}
+
+function selectallEvent(){
+    $db=connect();
+    $sql = "SELECT * FROM basic_detail";
+    $result = $db->query($sql);
+    return $result;
 }

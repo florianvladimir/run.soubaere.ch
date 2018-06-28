@@ -1,15 +1,33 @@
-<main class="whitecont" id="content">
+<?php
+$id=$_GET['id'];
+$info=selectEinheitByBasicDetailID($id);
+$coor = getCoord($info['basicInfo']['file']);
+
+?>
+
+
+<body onload="init(<?php echo $coor ?>)">
+<main class="whitecont cont22" id="content">
         <?php
-            $info=selectEinheitByBasicDetailID(11);
+
             if($info['Sportart']==3){
                htmlAndereSportart($info);
             }
+            elseif ($info['Sportart']==2){
+                htmlDL($info);
+            }
+            else{
+                htmlOL($info);
+            }
         ?>
-
+    <div class="OSMmap">
+        <div style="width:100%; height:100%" id="map"></div>
+    </div>
 </main>
+</body>
 <?php
 
-echo $info['basicInfo']['Datum'];
+
 
 
 function htmlAndereSportart($info){
@@ -18,6 +36,7 @@ function htmlAndereSportart($info){
     <article class="contText" id="contTextID">
         <p class="kursiv"><?php echo $info['basicInfo']['Datum'];?></p>
         <h1><?php echo $info['detailInfo']['Name'];?></h1>
+        <h2><?php echo 'Intensität: '.$info['detailInfo']['Intens']?></h2>
         <?php
         htmlbasicInfo($info);
         //echo $info['detailInfo']['Name'];
@@ -25,6 +44,39 @@ function htmlAndereSportart($info){
 
     </article>
 <?php
+}
+
+function htmlDL($info){
+    ?>
+    <a class="big" id="picgpsGr" href="./pictures/awesome.jpg" target="_blank" title="Ansehen"></a>
+    <article class="contText" id="contTextID">
+        <p class="kursiv"><?php echo $info['basicInfo']['Datum'];?></p>
+        <h1><?php echo $info['detailInfo']['Name'];?></h1>
+        <h2><?php echo 'Intensität: '.$info['detailInfo']['Intens']?></h2>
+        <?php
+        htmlbasicInfo($info);
+        //echo $info['detailInfo']['Name'];
+        ?>
+
+    </article>
+    <?php
+}
+
+function htmlOL($info){
+    ?>
+   <a class="big" id="picgpsGr" href="./pictures/awesome.jpg" target="_blank" title="Ansehen"></a>
+    <article class="contText" id="contTextID">
+        <p class="kursiv"><?php echo $info['basicInfo']['Datum'];?></p>
+        <h1><?php echo $info['detailInfo']['Name'];?></h1>
+
+        <?php
+        htmlbasicInfo($info);
+        htmlDetailOLInfo($info);
+
+        ?>
+
+    </article>
+    <?php
 }
 
 function htmlbasicInfo($info){
@@ -58,3 +110,33 @@ function htmlbasicInfo($info){
 
     <?php
 }
+
+function htmlDetailOLInfo($info){
+    ?>
+    <div class="basicInfo" id="basicInfoBoxGrossOL">
+        <div id="basicinfoCenter">
+            <div class="basicInfoElement">
+                <p class="InfoTitel">Ort</p>
+                <p class="basicInfoInfo"><?php echo $info['detailInfo']['ort'];?></p>
+                <p class="InfoTitel grossInfoTitel"></p>
+            </div>
+            <div class="basicInfoElement">
+                <p class="InfoTitel">Massstab</p>
+                <p class="basicInfoInfo"><?php echo $info['detailInfo']['massstab'];?></p>
+                <p class="InfoTitel grossInfoTitel"><?php echo $info['detailInfo']['stand'];?></p>
+            </div>
+            <div class="basicInfoElement">
+                <p class="InfoTitel">Gelände</p>
+                <p class="basicInfoInfo"><?php echo $info['detailInfo']['gelaendeFein'];?></p>
+                <p class="InfoTitel grossInfoTitel"><?php echo $info['detailInfo']['gelaendeGrob'];?></p>
+            </div>
+            <div class="basicInfoElement">
+                <p class="InfoTitel">Disziplin</p>
+                <p class="basicInfoInfo"><?php echo $info['detailInfo']['disziplin'];?></p>
+                <p class="InfoTitel grossInfoTitel"><?php echo $info['detailInfo']['deklaration'];?></p>
+            </div>
+        </div>
+    </div>
+<?php
+}
+
