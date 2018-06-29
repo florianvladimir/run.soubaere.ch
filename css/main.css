@@ -155,7 +155,7 @@ h1{
 
 #b3{
     float: left;
-    background-image: url(../pictures/nodhalten_small.jpg);
+    /*background-image: url(../pictures/nodhalten_small.jpg);*/
 }
 #b3 h2{
     background-color: #FFF;
@@ -178,19 +178,12 @@ h1{
 #picgps{
     float: left;
     margin-top: 10px;
-    background-image: url(../pictures/T8.Lang.jpg);
+    ../pictures/T8.Lang.jpg);
     background-position-y: 70%;
     background-size: 150%
 }
 
-#picgpsGr{
-    float: left;
-    margin: 0;
-    background-image: url(../pictures/awesome.jpg);
-    background-position-y: 50%;
-    background-size: 150%;
 
-}
 
 .training{
     width: 100%;
@@ -212,18 +205,7 @@ h1{
     float: right; 
 }
 
-#gps1{
-    background-image: url(../pictures/t8_small.jpg);
 
-
-}
-
-#gps2{
-    background-image: url(../pictures/nodhalten_small.jpg);
-    background-size: 111%;
-
-
-}
 
 #g3{
 

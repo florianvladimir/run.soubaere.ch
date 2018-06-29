@@ -13,6 +13,7 @@ function build($file, $script=false)
         <link rel="stylesheet" href="css/newrun.css">
         <link rel="stylesheet" href="css/upload.css">
         <link rel="stylesheet" href="css/detailansicht.css">
+        <link rel="stylesheet" href="css/gpsuebersichtcss.php">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 

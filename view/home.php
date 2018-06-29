@@ -36,7 +36,8 @@
             <h2 class="dark"> zum letzten Eintrag</h2>
         </article>
         <div class="btn">
-            <a href="detailansicht">
+            <?php $id=selectlastEvent();?>
+            <a href="detailansicht<?php echo "?id=".$id ?>">
                 <div class="button btndark"><span>Mehr </span></div></a>
         </div>
     </div>
@@ -65,7 +66,7 @@
                 <div class="input-group mb-3">
                     <form action="uploadgpx" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="gpxfile">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="gpxfile" accept=".gpx">
                             <label class="custom-file-label" for="inputGroupFile01">Bitte wähle das GPX-File der Einheit aus</label>
                         </div>
                         <br>

@@ -23,6 +23,9 @@
 .grossInfoTitel{
     font-size: 110%;
 }
+.grossInfoTitelKlein{
+    font-size: 14px;
+}
 
 .kursiv{
     font-style:italic;
@@ -66,4 +69,12 @@
     margin: 10px 0;
     width: 100%;
     height: 444px;
+}
+#picgpsGr{
+    float: left;
+    margin: 0;
+    background-position-x: 50%;
+    background-position-y: 40%;
+    background-size: 100%;
+
 }

@@ -7,7 +7,7 @@
                 <option value="2">Dauerlauf</option>
                 <option value="3">Andere Aktivität</option>
             </select>
-            <form id="sportat-ol" class="backgrundGrayTransparent" action="insertevent" method="post">
+            <form id="sportat-ol" class="backgrundGrayTransparent" action="insertevent" method="post" enctype="multipart/form-data">
                 <?php $_SESSION["sportart"]=1;?>
                 <div id="karte">
                     <p>Karte:</p>
@@ -47,6 +47,7 @@
                         <option value="5">Staffel</option>
                         <option value="6">Nacht-OL</option>
                     </select>
+
                     <?php if(!isset($_SESSION['aktGPXn']['Distanz'])){?>
                         <input type="text" name='distanz' class='inp' placeholder="Distanz in KM"  required>
                     <?php } ?>
@@ -59,8 +60,13 @@
                     <?php if(!isset($_SESSION['aktGPXn']['verticalheight'])){?>
                         <input type="text" name='verticalheight' class='inp' placeholder="Höhenmeter in Meter" required>
                     <?php } ?>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="jpgkarte" accept="image/*">
+                        <label class="custom-file-label" for="inputGroupFile01">Katrte hinzufügen</label>
+                    </div>
+                </div>
 
-                </div><div class="btn">
+                <div class="btn">
                     <input type="submit" class="button btnsave" value="Speichern"></inut>
                 </div>
             </form>

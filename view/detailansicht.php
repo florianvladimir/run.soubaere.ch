@@ -2,7 +2,7 @@
 $id=$_GET['id'];
 $info=selectEinheitByBasicDetailID($id);
 $coor = getCoord($info['basicInfo']['file']);
-
+echo "<style>".'#picgpsGr{ background-image: url('.$info['detailInfo']['KarteBild'].')}'."</style>";
 ?>
 
 
@@ -32,7 +32,7 @@ $coor = getCoord($info['basicInfo']['file']);
 
 function htmlAndereSportart($info){
     ?>
-    <a class="big" id="picgpsGr" href="./pictures/awesome.jpg" target="_blank" title="Ansehen"></a>
+    <a class="big" id="picgpsGr"></a>
     <article class="contText" id="contTextID">
         <p class="kursiv"><?php echo $info['basicInfo']['Datum'];?></p>
         <h1><?php echo $info['detailInfo']['Name'];?></h1>
@@ -48,7 +48,7 @@ function htmlAndereSportart($info){
 
 function htmlDL($info){
     ?>
-    <a class="big" id="picgpsGr" href="./pictures/awesome.jpg" target="_blank" title="Ansehen"></a>
+    <a class="big" id="picgpsGr"></a>
     <article class="contText" id="contTextID">
         <p class="kursiv"><?php echo $info['basicInfo']['Datum'];?></p>
         <h1><?php echo $info['detailInfo']['Name'];?></h1>
@@ -64,7 +64,7 @@ function htmlDL($info){
 
 function htmlOL($info){
     ?>
-   <a class="big" id="picgpsGr" href="./pictures/awesome.jpg" target="_blank" title="Ansehen"></a>
+   <a class="big" id="picgpsGr" href="<?php echo $info['detailInfo']['KarteBild']?>" target="_blank" title="Ansehen"></a>
     <article class="contText" id="contTextID">
         <p class="kursiv"><?php echo $info['basicInfo']['Datum'];?></p>
         <h1><?php echo $info['detailInfo']['Name'];?></h1>
@@ -128,7 +128,16 @@ function htmlDetailOLInfo($info){
             <div class="basicInfoElement">
                 <p class="InfoTitel">Gelände</p>
                 <p class="basicInfoInfo"><?php echo $info['detailInfo']['gelaendeFein'];?></p>
-                <p class="InfoTitel grossInfoTitel"><?php echo $info['detailInfo']['gelaendeGrob'];?></p>
+                <?php if($info['detailInfo']['gelaendeGrob']=='technisch Anspruchsvoll'){ ?>
+                <p class="InfoTitel grossInfoTitelKlein"><?php echo $info['detailInfo']['gelaendeGrob'];?></p>
+                <?php }
+                else{
+                    ?>
+                     <p class="InfoTitel grossInfoTitel"><?php echo $info['detailInfo']['gelaendeGrob'];?></p>
+                    <?php
+                }
+
+                ?>
             </div>
             <div class="basicInfoElement">
                 <p class="InfoTitel">Disziplin</p>

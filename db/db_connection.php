@@ -109,9 +109,9 @@ function inserteventol(){
     $dekl=dataIsset($data,'deklaration');
     $disz=dataIsset($data,'disziplin');
 
-    $statement2 = $db->prepare('INSERT INTO detailinfoeventol (MapName,ort,stand,massstab,gelaendeGrob_ID,gelaendeFein_ID,deklaration_ID,disziplin_ID,stringID) VALUES (?,?,?,?,?,?,?,?,?)');
+    $statement2 = $db->prepare('INSERT INTO detailinfoeventol (MapName,ort,stand,massstab,gelaendeGrob_ID,gelaendeFein_ID,deklaration_ID,disziplin_ID,stringID,gpsjpg) VALUES (?,?,?,?,?,?,?,?,?,?)');
 
-    $statement2->bind_param('ssssiiiis', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$id);
+    $statement2->bind_param('ssssiiiiss', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$id,$_SESSION['jpg']['destination']);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
     $idBasicInfo=selectBasicInfoIDByStringID($id);
@@ -126,6 +126,7 @@ function inserteventol(){
 
 function inserteventdl(){
     $data = $_SESSION['upload'];
+    $bild = randomPic();
     unset($_SESSION['upload']);
     $db = connect();
 
@@ -152,9 +153,9 @@ function inserteventdl(){
     $dlFrm=dataIsset($data,'DL_Form');
 
 
-    $statement2 = $db->prepare('INSERT INTO detailinfoeventdl (NameDetailInfoDl,DLForm_ID,stringID) VALUES (?,?,?)');
+    $statement2 = $db->prepare('INSERT INTO detailinfoeventdl (NameDetailInfoDl,DLForm_ID,stringID,gpsjpg) VALUES (?,?,?,?)');
 
-    $statement2->bind_param('sis', $data['nameK'], $dlFrm,$id);
+    $statement2->bind_param('siss', $data['nameK'], $dlFrm,$id,$bild);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
     $idBasicInfo=selectBasicInfoIDByStringID($id);
@@ -169,6 +170,7 @@ function inserteventdl(){
 }
 
 function inserteventanders(){
+    $bild = randomPic();
     $data = $_SESSION['upload'];
     unset($_SESSION['upload']);
     $db = connect();
@@ -196,9 +198,9 @@ function inserteventanders(){
     $intens=dataIsset($data,'Intens_Select');
 
 
-    $statement2 = $db->prepare('INSERT INTO detailinfoeventanders (NameDetailInfoAnders,Intens_ID,stringID) VALUES (?,?,?)');
+    $statement2 = $db->prepare('INSERT INTO detailinfoeventanders (NameDetailInfoAnders,Intens_ID,stringID,gpsjpg) VALUES (?,?,?,?)');
 
-    $statement2->bind_param('sis', $data['nameK'], $intens,$id);
+    $statement2->bind_param('siss', $data['nameK'], $intens,$id,$bild);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
     $idBasicInfo=selectBasicInfoIDByStringID($id);
@@ -329,6 +331,7 @@ function selectEinheitAndersByID($id){
         while ($row = $result->fetch_assoc()) {
             $res['Name']=$row["NameDetailInfoAnders"];
             $res['Intens']=$row['NameIntens'];
+            $res['KarteBild']=$row['gpsjpg'];
         }
     }
     return $res;
@@ -344,6 +347,7 @@ function selectEinheitDlByID($id){
         while ($row = $result->fetch_assoc()) {
             $res['Name']=$row["NameDetailInfoDl"];
             $res['Intens']=$row['NameDLForm'];
+            $res['KarteBild']=$row['gpsjpg'];
         }
     }
     return $res;
@@ -364,6 +368,7 @@ function selectEinheitOLByID($id){
             $res['gelaendeGrob']=$row['NameGelaende'];
             $res['deklaration']=$row['NameDeklaration'];
             $res['disziplin']=$row['NameDisziplin'];
+            $res['KarteBild']=$row['gpsjpg'];
         }
     }
     return $res;
@@ -371,7 +376,26 @@ function selectEinheitOLByID($id){
 
 function selectallEvent(){
     $db=connect();
-    $sql = "SELECT * FROM basic_detail";
+    $sql = "SELECT * FROM basic_detail order by ID_Basic_Detail desc";
     $result = $db->query($sql);
     return $result;
+}
+function selectlastEvent(){
+    $db=connect();
+    $sql = "SELECT * FROM basic_detail order by ID_Basic_Detail desc limit 1";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res = $row['ID_Basic_Detail'];
+        }
+    }
+
+    return $res;
+}
+
+function randomPic(){
+    $array = array("pictures/stone1_small.jpg", "pictures/stone2_small.jpg", "pictures/lake_small.jpg", "pictures/meer1_small.jpg","pictures/meer2_small.jpg","pictures/meer3_small.jpg");
+    $rand= rand ( 1, 6 );
+    return $array[$rand];
 }
