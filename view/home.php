@@ -30,10 +30,10 @@
 
     </div>
 
-    <div class="small" id="b3">
+    <div class="smallGps left" id="b3">
 
-        <article class="art">
-            <h2 class="dark"> zum letzten Eintrag</h2>
+        <article class="training">
+            <h2 class="light"> zum letzten Eintrag</h2>
         </article>
         <div class="btn">
             <?php $id=selectlastEvent();?>
@@ -53,6 +53,7 @@
         </a>
 
     </div>
+
 
     <div id="myModal" class="modal">
 

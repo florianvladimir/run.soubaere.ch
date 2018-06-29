@@ -14,11 +14,12 @@ function build($file, $script=false)
         <link rel="stylesheet" href="css/upload.css">
         <link rel="stylesheet" href="css/detailansicht.css">
         <link rel="stylesheet" href="css/gpsuebersichtcss.php">
+        <link rel="stylesheet" href="css/termine.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     </head>
-    <body>
+    <body onload="widthTerm()">
     <header>
         <div id=header>
             <div id="header_pic">
@@ -72,6 +73,7 @@ function build($file, $script=false)
     <script src="js/detailansicht.js" type="text/javascript"></script>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+    <script src="js/termineMove.js" type="text/javascript"></script>
     </body>
 </html>
 <?php

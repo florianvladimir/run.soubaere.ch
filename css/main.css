@@ -154,12 +154,12 @@ h1{
 }
 
 #b3{
-    float: left;
+    /*float: left;
     /*background-image: url(../pictures/nodhalten_small.jpg);*/
 }
 #b3 h2{
-    background-color: #FFF;
-    padding:10px 40px
+    /*background-color: #FFF;
+    padding:10px 40px*/
 }
 #b4{
     float: right;

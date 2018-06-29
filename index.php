@@ -46,13 +46,15 @@ if(!empty($url[1])){
         case 'insertevent':
             build('insertevent.php', true);
             break;
+        case 'termine':
+            build('termine.php');
+            break;
         default:
             build('home.php');
             break;
     }
 }
 else {
-    checkLoggedIn();
     build('home.php');
     }
  ?>
