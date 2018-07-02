@@ -15,36 +15,35 @@ function build($file, $script=false)
         <link rel="stylesheet" href="css/detailansicht.css">
         <link rel="stylesheet" href="css/gpsuebersichtcss.php">
         <link rel="stylesheet" href="css/termine.css">
+        <link rel="stylesheet" href="css/newtermine.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     </head>
-    <body onload="widthTerm()">
+    <body>
     <header>
         <div id=header>
             <div id="header_pic">
             </div>
 
             <div id="navi">
-                <input type="search" id="suche" placeholder="search"></i>
                 <nav id="naviga">
                     <label for="show-menu" class="show-menu"><i class="fa fa-bars" aria-hidden="false"></i></label>
                     <input type="checkbox" id="show-menu" role="button">
                     <ul id="menu">
                         <li><a href="home">Home</a></li>
                         <li>
-                            <a href="gps">GPS</a>
+                            <a href="gps">Training</a>
                             <ul class="hidden">
-                                <li><a href="gpsarchiv">GPS-Archiv</a></li>
-                                <li><a href="newrun">Lauf erfassen</a></li>
+                                <li><a href="gpsarchiv">Archiv</a></li>
+                                <li><a href="newrun">Planung</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="galerie">Galerie</a>
+                            <a href="termine?strdat=now">Termine</a>
                         </li>
                         <li><a href="bio">Biographie</a></li>
                         <li><a href="impressum">Impressum</a></li>
-                        <li id="suc"><input type="search" id="sucheM" placeholder="search"> </input></li>
                     </ul>
                 </nav>
             </div>
@@ -59,7 +58,7 @@ function build($file, $script=false)
         }
      ?>
 	</main>
-    <footer>
+    <footer id="fooo">
         <hr>
         <p class="light"><i class="fa fa-copyright" aria-hidden="true"></i>
             Florian Moser<p>
@@ -74,6 +73,7 @@ function build($file, $script=false)
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
     <script src="js/termineMove.js" type="text/javascript"></script>
+    <script src="js/newtermin.js" type="text/javascript"></script>
     </body>
 </html>
 <?php

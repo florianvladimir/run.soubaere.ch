@@ -212,6 +212,24 @@ function inserteventanders(){
     $statement3->bind_param('ss',$idBasicInfo,$idDetailInfo);
     if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 }
+function insertTermin(){
+    $db = connect();
+    $id=generateRandomString(32);
+    $data=$_SESSION["uplTermin"];
+    $statement2 = $db->prepare('INSERT INTO detailinfoeventol (MapName,ort,stringID,planung,wdate) VALUES (?,?,?,?,?)');
+
+    $statement2->bind_param('sssss', $data["nameK"],$data["ort"],$id,$data["ziele"],$data["date"]);
+    if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+
+
+    $idDetailInfo=selectDetailInfoOlIDByStringID($id);
+    echo "Detail: ".$idDetailInfo;
+    $pl="tru";
+    $statement3 = $db->prepare('INSERT INTO basic_detail (detailinfool_ID,Planung) VALUES (?,?)');
+
+    $statement3->bind_param('ss',$idDetailInfo,$pl);
+    if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+}
 
 function selectBasicInfoIDByStringID($stringID){
     $db = connect();
@@ -286,7 +304,7 @@ function selectDetailInfoAndersIDByStringID($stringID){
  * @param $basicInfoID
  * @return mixed
  */
-function selectEinheitByBasicDetailID($basicInfoID){
+function selectEinheitByBasicDetailID($basicInfoID,$onlyTer){
     $db = connect();
     $sql= "SELECT * FROM basic_detail join basicinfoevent on basicinfo_ID=ID_BasicInfo WHERE ID_Basic_Detail = '".$basicInfoID."'";
     $result = $db->query($sql);
@@ -296,15 +314,52 @@ function selectEinheitByBasicDetailID($basicInfoID){
         // output data of each row
         while($row = $result->fetch_assoc())
         {
+            if($onlyTer){
             $res['basicInfo']['Datum']= $row["Datum"];
             $res['basicInfo']['Zeit']= $row["Zeit"];
             $res['basicInfo']['Distanz']= $row["Distanz"];
             $res['basicInfo']['hoehe']= $row["hoehe"];
             $res['basicInfo']['file']=$row['filedest'];
-            if($row)
             $res['basicInfo']['hr']= $row["hr"];
+            }
             if(isset($row['detailinfool_ID'])){
                 $res['detailInfo']=selectEinheitOLByID($row['detailinfool_ID']);
+                $res['Sportart']=1;
+            }
+            elseif(isset($row['detailinfodl_ID'])){
+                $res['detailInfo']=selectEinheitDLByID($row['detailinfodl_ID']);
+                $res['Sportart']=2;
+            }
+            elseif(isset($row['detailinfoanders_ID'])){
+                $res['detailInfo']=selectEinheitAndersByID($row['detailinfoanders_ID']);
+                $res['Sportart']=3;
+            }
+
+        }
+    }
+
+    return $res;
+}
+function selectEinheitByBasicDetailID_Termin($basicInfoID,$onlyTer){
+    $db = connect();
+    $sql= "SELECT * FROM basic_detail WHERE ID_Basic_Detail = '".$basicInfoID."'";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0)
+    {
+        // output data of each row
+        while($row = $result->fetch_assoc())
+        {
+            if($onlyTer){
+                $res['basicInfo']['Datum']= $row["Datum"];
+                $res['basicInfo']['Zeit']= $row["Zeit"];
+                $res['basicInfo']['Distanz']= $row["Distanz"];
+                $res['basicInfo']['hoehe']= $row["hoehe"];
+                $res['basicInfo']['file']=$row['filedest'];
+                $res['basicInfo']['hr']= $row["hr"];
+            }
+            if(isset($row['detailinfool_ID'])){
+                $res['detailInfo']=selectEinheitOLByID_Termin($row['detailinfool_ID']);
                 $res['Sportart']=1;
             }
             elseif(isset($row['detailinfodl_ID'])){
@@ -374,15 +429,31 @@ function selectEinheitOLByID($id){
     return $res;
 }
 
+function selectEinheitOLByID_Termin($id){
+    $db = connect();
+    $sql= "SELECT * FROM detailinfoeventol WHERE ID_DetailInfo = '".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res['Name']=$row["MapName"];
+            $res['ort']=$row['ort'];
+            $res['planung']=$row['planung'];
+            $res['wdate']=$row["wdate"];
+        }
+    }
+    return $res;
+}
+
 function selectallEvent(){
     $db=connect();
-    $sql = "SELECT * FROM basic_detail order by ID_Basic_Detail desc";
+    $sql = "SELECT * FROM basic_detail where Planung != 'tru' order by ID_Basic_Detail desc";
     $result = $db->query($sql);
     return $result;
 }
 function selectlastEvent(){
     $db=connect();
-    $sql = "SELECT * FROM basic_detail order by ID_Basic_Detail desc limit 1";
+    $sql = "SELECT * FROM basic_detail where Planung != 'tru' order by ID_Basic_Detail desc limit 1";
     $result = $db->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -392,6 +463,12 @@ function selectlastEvent(){
     }
 
     return $res;
+}
+function selectallTermine(){
+    $db=connect();
+    $sql = "SELECT * FROM basic_detail where Planung like 'tru' order by ID_Basic_Detail desc";
+    $result = $db->query($sql);
+    return $result;
 }
 
 function randomPic(){

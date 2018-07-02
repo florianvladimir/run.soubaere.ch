@@ -10,7 +10,7 @@
     <div class="small" id="b1">
 
         <article class="art">
-            <h2 class="light">GPS-Archiv</h2>
+            <h2 class="light">Archiv</h2>
 
             <p class="light">Alle erfassten Trainings auf einen Blick:</p>
         </article>
@@ -44,9 +44,9 @@
 
     <div class="small" id="b4">
         <article class="art">
-            <h2 class="light">Galerie</h2>
+            <h2 class="light">Termine</h2>
         </article>
-        <a href="galerie.php">
+        <a href="termine?strdat=now">
             <div class="btn">
                 <div class="button"><span>Mehr</span></div>
             </div>

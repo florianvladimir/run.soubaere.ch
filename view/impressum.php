@@ -11,7 +11,7 @@
             <article class="art">
             <h2 class="light">Quellen:</h2>
 
-            <p class="light">The rights to all photos are owned by Florian Moser</p>
+            <p class="light">The rights to more or less all photos are owned by Florian Moser</p>
         </article>
         </div>
         <div class="small" id="imp2">

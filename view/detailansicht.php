@@ -1,7 +1,10 @@
 <?php
 $id=$_GET['id'];
-$info=selectEinheitByBasicDetailID($id);
+$info=selectEinheitByBasicDetailID($id,true);
+if($info['basicInfo']['file']!=""){
+
 $coor = getCoord($info['basicInfo']['file']);
+}
 echo "<style>".'#picgpsGr{ background-image: url('.$info['detailInfo']['KarteBild'].')}'."</style>";
 ?>
 

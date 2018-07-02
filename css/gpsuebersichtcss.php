@@ -13,7 +13,7 @@ $i=0;
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        $info=selectEinheitByBasicDetailID($row['ID_Basic_Detail']);
+        $info=selectEinheitByBasicDetailID($row['ID_Basic_Detail'],true);
         $i++;
         if(isset($info['detailInfo']['KarteBild'])) {
             echo "#gps".$i."{";
@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
 
     $result = selectlastEvent();
 
-            $info=selectEinheitByBasicDetailID($result);
+            $info=selectEinheitByBasicDetailID($result,true);
             $i++;
             if(isset($info['detailInfo']['KarteBild'])) {
                 echo "#b3{";

@@ -35,7 +35,7 @@ if(!empty($url[1])){
             build('newrun.php');
             break;
         case 'newrunselect':
-            build('newrun2.php');
+            build('newtermin.php');
             break;
         case 'impressum':
             build('impressum.php');
@@ -48,6 +48,15 @@ if(!empty($url[1])){
             break;
         case 'termine':
             build('termine.php');
+            break;
+        case 'newtermin':
+            build('newtermin.php');
+            break;
+        case 'newterminupload':
+            build('newterminupload.php',true);
+            break;
+        case 'mytermine':
+            build('mytermine.php');
             break;
         default:
             build('home.php');
