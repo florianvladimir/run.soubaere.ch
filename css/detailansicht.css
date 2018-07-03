@@ -78,3 +78,19 @@
     background-size: 100%;
 
 }
+
+.ziele_auswert{
+    background-color: #333333;
+    color: #cccccc;
+    padding: 15px;
+}
+.ziele_auswert h1{
+    margin: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid white;
+}
+
+.zieleSchrift{
+    font-family: 'Shadows Into Light';
+    font-size: 2em;
+}

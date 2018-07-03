@@ -58,6 +58,24 @@ function connect()
     $db->close();
 }
 
+function insertBasicInfowithTermin($id){
+    $data = $_SESSION['aktGPXn'];
+    $db = connect();
+    $id=StringIDwithBDID($id);
+    $_SESSION["randomIDofBasicI"]=$id;
+
+    //Vorbereiten des Queries
+    $statement = $db->prepare('INSERT INTO basicinfoevent (Datum,Zeit,Distanz,hoehe,hr,stringID,filedest) VALUES (?,?,?,?,?,?,?)');
+
+    //Daten an das Query binden
+    $statement->bind_param('sssssss', $data['Datum'], $data['time'], $data['Distanz'], $data['verticalheight'],$data['hr'],$id,$data['file']);
+
+    //Ausführen + Erfolgsmeldung
+    if($statement->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+
+    $db->close();
+}
+
 function insertBasicInfo(){
     $data = $_SESSION['aktGPXn'];
 
@@ -470,6 +488,70 @@ function selectallTermine(){
     $result = $db->query($sql);
     return $result;
 }
+
+function selectTeminById($id){
+    $db=connect();
+    $sql = "SELECT * FROM basic_detail where Planung like 'tru' and ID_Basic_Detail='".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res = $row['detailinfool_ID'];
+
+        }
+    }
+    $sql2 = "SELECT * FROM detailinfoeventol where ID_DetailInfo='".$res."'";
+    $result2 = $db->query($sql2);
+    return $result2;
+
+}
+
+function StringIDwithBDID($id){
+    $db=connect();
+    $sql = "SELECT * FROM basic_detail join detailinfoeventol on ID_Detailinfo=detailInfool_ID where basic_detail.Planung like 'tru' and ID_Basic_Detail='".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res = $row['stringID'];
+        }
+    }
+    return $res;
+
+}
+
+function updateDetailInfool(){
+    $data = $_SESSION['upload'];
+    unset($_SESSION['upload']);
+
+    $db=connect();
+    $id=$_SESSION["randomIDofBasicI"];
+    unset($_SESSION['aktGPXn']);
+
+    $gelF=dataIsset($data,'Gelaende_fein');
+    $gelG=dataIsset($data,'Gelaende_grob');
+    $dekl=dataIsset($data,'deklaration');
+    $disz=dataIsset($data,'disziplin');
+
+    $statement2 = $db->prepare('UPDATE detailinfoeventol set MapName=?,ort=?,stand=?,massstab=?,gelaendeGrob_ID=?,gelaendeFein_ID=?,deklaration_ID=?,disziplin_ID=?,gpsjpg=? where stringID="'.$id.'"');
+    $statement2->bind_param('ssssiiiis', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$_SESSION['jpg']['destination']);
+    if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+
+}
+
+function updateBasicInfoTermin(){
+    $db=connect();
+    $id=$_SESSION["randomIDofBasicI"];
+    unset($_SESSION["randomIDofBasicI"]);
+    $biid=selectBasicInfoIDByStringID($id);
+    $diolid=selectDetailInfoOlIDByStringID($id);
+    $planung="";
+    $statement2 = $db->prepare('UPDATE basic_detail set basicinfo_ID=?,Planung=? where detailInfool_ID="'.$diolid.'"');
+    $statement2->bind_param('is', $biid,$planung);
+    if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+
+}
+
 
 function randomPic(){
     $array = array("pictures/stone1_small.jpg", "pictures/stone2_small.jpg", "pictures/lake_small.jpg", "pictures/meer1_small.jpg","pictures/meer2_small.jpg","pictures/meer3_small.jpg");

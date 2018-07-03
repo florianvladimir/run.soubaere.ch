@@ -55,34 +55,6 @@
     </div>
 
 
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Neue Einheit erfassen</h2>
-            </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <form action="uploadgpx" method="post" enctype="multipart/form-data">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="gpxfile" accept=".gpx">
-                            <label class="custom-file-label" for="inputGroupFile01">Bitte wähle das GPX-File der Einheit aus</label>
-                        </div>
-                        <br>
-                        <input type="submit" class="custom-file-input" id="btnWeiterFile" value="Weiter">
-                        <label class="custom-file-label" for="btnWeiterFile">Weiter</label>
-                    </form>
-                </div>
-                <a href="newrun">Kein GPX - lade die Einheit manuell hoch.</a>
-            </div>
-            <div class="modal-footer">
-                <h3></h3>
-            </div>
-        </div>
-
-
-    </div>
+<?php gpxUpload();?>
 
 </main>

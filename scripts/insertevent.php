@@ -44,7 +44,7 @@ if(isset($_POST['Gelaende_grob'])){
         }
 
     inserteventol();
-    //header("Location: home");
+    header("Location: home");
 }
 
 elseif(isset($_POST['DL_Form'])){

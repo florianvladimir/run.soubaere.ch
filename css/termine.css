@@ -117,3 +117,11 @@
     color: #0e5ca8;
     width: 220px;
 }
+
+.auswertungT{
+    margin-bottom: 100px; !important;
+}
+.btn_auswertungT{
+    height:  50px;
+    width: 150px;
+}

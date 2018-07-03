@@ -3,6 +3,7 @@
 <?php
 $result = selectallTermine();
 $i=0;
+
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
@@ -22,16 +23,22 @@ if ($result->num_rows > 0) {
 function htmlUebLeft($data,$row,$i){
     $i++;
     ?>
-    <div class="smallGps left" id="gps<?php echo $i ?>">
+    <div class="smallGps left" id="termin<?php echo $i ?>">
 
-        <article class="training">
+        <article class="training auswertungT">
             <h2 class="light"><?php echo $data['detailInfo']['Name'];?></h2>
 
         </article>
 
-        <div class="btn">
+
+        <div class="btn_auswertungT btn">
             <a href="detailansichttermin?id=<?php echo $row['ID_Basic_Detail']?>">
-                <div class="button"><span>Mehr</span></div>
+                <div class="button"><span>Ansehen</span></div>
+            </a>
+        </div>
+        <div class="btn_auswertungT btn">
+            <a href="termintoevent?id=<?php echo $row['ID_Basic_Detail']?>">
+                <div  class="button" ><span>Auswerten</span></div>
             </a>
         </div>
 
@@ -44,20 +51,26 @@ function htmlUebRight($data,$row, $i){
     $i++;
     ?>
 
-    <div class="smallGps right" id="gps<?php echo $i ?>">
+    <div class="smallGps right" id="termin<?php echo $i ?>">
 
-        <article class="training">
+        <article class="auswertungT training">
             <h2 class="light"><?php echo $data['detailInfo']['Name'];?></h2>
 
         </article>
-        <div class="btn">
+        <div class="btn_auswertungT btn">
             <a href="detailansichttermin?id=<?php echo $row['ID_Basic_Detail']?>">
-                <div  class="button" ><span>Mehr</span></div>
+                <div  class="button" ><span>Ansehen</span></div>
+            </a>
+        </div>
+        <div class="btn_auswertungT btn">
+            <a href="termintoevent?id=<?php echo $row['ID_Basic_Detail']?>">
+                <div  class="button" ><span>Auswerten</span></div>
             </a>
         </div>
     </div>
     <?php
 }
 ?>
-
+    <?php gpxUpload(); ?>
 </main>
+

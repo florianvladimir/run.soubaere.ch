@@ -116,13 +116,31 @@ $_SESSION['aktGPXn']['Datum']=$datum;
 $_SESSION['aktGPXn']['hr']=$avgHr;
 $_SESSION['aktGPXn']['file']=$fileDest;
 
-
-insertBasicInfo();
-
-echo ("<SCRIPT LANGUAGE='JavaScript'>
+if(isset($_SESSION["aktB_B_ID"])){
+    insertBasicInfowithTermin($_SESSION["aktB_B_ID"]);
+    $result=selectTeminById($_SESSION["aktB_B_ID"]);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            //$res["MapName"] = $row['MapName'];
+            $res=$row;
+        }
+    }
+    $_SESSION["aktDetailInfo"]=$res;
+    unset($_SESSION["aktB_B_ID"]);
+    echo ("<SCRIPT LANGUAGE='JavaScript'>
         //window.alert('Bitte wähle ein GPX-File aus');
-        window.location.href='newrun';
+        window.location.href='newrun?termin=true';
         </SCRIPT>");
+}
+else {
+    insertBasicInfo();
+    echo ("<SCRIPT LANGUAGE='JavaScript'>
+        //window.alert('Bitte wähle ein GPX-File aus');
+        window.location.href='newrun?termin=false';
+        </SCRIPT>");
+}
+
 
 
 function dataToTinme($datum,$bool){

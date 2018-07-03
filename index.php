@@ -58,6 +58,15 @@ if(!empty($url[1])){
         case 'mytermine':
             build('mytermine.php');
             break;
+        case 'detailansichttermin'   :
+            build('detailansichttermin.php');
+            break;
+        case 'termintoevent':
+            build("termintoevent.php");
+            break;
+        case 'updateevent':
+            build("updateevent.php",true);
+            break;
         default:
             build('home.php');
             break;
