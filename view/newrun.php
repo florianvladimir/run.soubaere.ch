@@ -144,11 +144,12 @@
 elseif(1==1){
     ?>
     <main id="content">
-        <article class="contFormular">
+        <article class="contFormular" style="height: auto">
             <div class="formular">
                 <form id="sportat-ol" class="backgrundGrayTransparent" action="updateevent" method="post"
-                      enctype="multipart/form-data" style="display: block">
+                      enctype="multipart/form-data" style="display: block; overflow: hidden; height: auto">
                     <?php $_SESSION["sportart"] = 1; ?>
+                    <div style="overflow: auto">
                     <div id="karte">
                         <p>Karte:</p>
                         <?php if (isset($_SESSION['aktDetailInfo']['MapName'])) { ?>
@@ -211,9 +212,13 @@ elseif(1==1){
                             <label class="custom-file-label" for="inputGroupFile01">Katrte hinzufügen</label>
                         </div>
                     </div>
-
-                    <div class="btn">
-                        <input type="submit" class="button btnsave" value="Speichern"></inut>
+                    </div>
+                    <div id="zielsetzung">
+                        <p>Auswertung</p>
+                        <textarea placeholder="Auswertung:" rows="20" name="ziele" id="ziele" cols="40" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                    </div>
+                    <div class="btn" style="margin-top: 5px">
+                        <input type="submit" class="button btnsave" value="Speichern" style="margin-top: 5px"></inut>
                     </div>
                 </form>
             </div>

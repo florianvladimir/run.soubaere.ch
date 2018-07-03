@@ -442,6 +442,7 @@ function selectEinheitOLByID($id){
             $res['deklaration']=$row['NameDeklaration'];
             $res['disziplin']=$row['NameDisziplin'];
             $res['KarteBild']=$row['gpsjpg'];
+            $res['ziele']=$row['planung'];
         }
     }
     return $res;

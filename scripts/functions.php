@@ -72,7 +72,7 @@ function gpxUpload(){
                         <label class="custom-file-label" for="btnWeiterFile">Weiter</label>
                     </form>
                 </div>
-                <a href="newrun">Kein GPX - lade die Einheit manuell hoch.</a>
+                <a href="newrun?termin=true">Kein GPX - lade die Einheit manuell hoch.</a>
             </div>
             <div class="modal-footer">
                 <h3></h3>

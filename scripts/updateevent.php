@@ -44,4 +44,4 @@ else{
 
 updateDetailInfool();
 updateBasicInfoTermin();
-//header("Location: home");
+header("Location: gps");

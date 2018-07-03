@@ -21,6 +21,7 @@ echo "<style>".'#picgpsGr{ background-image: url('.$info['detailInfo']['KarteBil
             }
             else{
                 htmlOL($info);
+
             }
         ?>
     <div class="OSMmap">
@@ -75,7 +76,7 @@ function htmlOL($info){
         <?php
         htmlbasicInfo($info);
         htmlDetailOLInfo($info);
-
+        planung($info);
         ?>
 
     </article>
@@ -150,5 +151,11 @@ function htmlDetailOLInfo($info){
         </div>
     </div>
 <?php
+}
+function planung($data){
+    if($data['detailInfo']['ziele']!=""){
+    echo "<div class='ziele_auswert'>";
+    echo "<h1>Zielsetzung</h1>";
+    echo "<p class='zieleSchrift'>".nl2br($data['detailInfo']['ziele'])."</p>";}
 }
 
