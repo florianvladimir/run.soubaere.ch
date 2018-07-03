@@ -36,7 +36,7 @@ function build($file, $script=false)
                             <a href="gps">Training</a>
                             <ul class="hidden">
                                 <li><a href="gpsarchiv">Archiv</a></li>
-                                <li><a href="newrun">Planung</a></li>
+                                <li><a href="myTermine">Planung</a></li>
                             </ul>
                         </li>
                         <li>

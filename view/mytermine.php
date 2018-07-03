@@ -18,5 +18,46 @@ if ($result->num_rows > 0) {
 
     }
 }
+
+function htmlUebLeft($data,$row,$i){
+    $i++;
+    ?>
+    <div class="smallGps left" id="gps<?php echo $i ?>">
+
+        <article class="training">
+            <h2 class="light"><?php echo $data['detailInfo']['Name'];?></h2>
+
+        </article>
+
+        <div class="btn">
+            <a href="detailansichttermin?id=<?php echo $row['ID_Basic_Detail']?>">
+                <div class="button"><span>Mehr</span></div>
+            </a>
+        </div>
+
+    </div>
+    <?php
+}
+
+
+function htmlUebRight($data,$row, $i){
+    $i++;
+    ?>
+
+    <div class="smallGps right" id="gps<?php echo $i ?>">
+
+        <article class="training">
+            <h2 class="light"><?php echo $data['detailInfo']['Name'];?></h2>
+
+        </article>
+        <div class="btn">
+            <a href="detailansichttermin?id=<?php echo $row['ID_Basic_Detail']?>">
+                <div  class="button" ><span>Mehr</span></div>
+            </a>
+        </div>
+    </div>
+    <?php
+}
 ?>
+
 </main>

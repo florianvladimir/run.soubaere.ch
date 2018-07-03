@@ -16,13 +16,15 @@ function widthTerm(){
 }
 var alleElemete =document.getElementsByClassName("bigTermine");
 for(var j=1;j<alleElemete.length;j++){
-    dragElement(alleElemete[j]);
+
+    dragElement(alleElemete[j],j);
 }
 
 
 
 
-function dragElement(elmnt) {
+function dragElement(elmnt,j) {
+
     var x= window.innerWidth;
     var y= intw;
     var abstand =(x-y)/2;
@@ -64,10 +66,14 @@ function dragElement(elmnt) {
         console.log(aktAbstand);
         console.log("..."+abstand);
         elmnt.style.opacity=aktAbstand/abstand+"";
+        var wid=elmnt.childNodes;
         if(y>=x-100){
             elmnt.style.display="none";
-            setTimeout("self.location.href='termine'",1000);
-            setTimeout("self.location.href='https://www.o-l.ch'",0)
+            var link = ' newtermin?wid='+wid[5].innerText+" ";
+            console.log(link);
+            //setTimeout("self.location.href='termine'",1000);
+            //setTimeout("self.location.href=link",10)
+            window.location.replace(link);
 
         }
     }

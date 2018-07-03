@@ -87,6 +87,7 @@
                 echo "<p class=\"DatumZahl\">" . $tag2 . "</p>";
                 echo "<p class=\"DatumMonat\">".$monL[$monat-1]."</p>";
                 echo "</div>";
+                echo "<div id='wid' style='display: none'>".$data[0]."</div>";
                 echo "</article></div>";
             }}
         }

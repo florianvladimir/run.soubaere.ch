@@ -31,7 +31,7 @@
             <h2 class="light">Alle Termine auf einen Blick</h2>
         </article>
         <div class="btn">
-            <a href="#">
+            <a href="mytermine">
                 <div class="button">
                     <span>Mehr</span>
                 </div>
