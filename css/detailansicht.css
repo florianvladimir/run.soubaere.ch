@@ -87,11 +87,23 @@
 }
 .ziele_auswert h1{
     margin: 0;
-    margin-bottom: 30px;
-    border-bottom: 1px solid white;
+    float: left;
 }
 
 .zieleSchrift{
     font-family: 'Shadows Into Light';
     font-size: 2em;
+}
+.ziele_auswert_ueb{
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px white solid;
+}
+
+.icon{
+    float: right;
+}
+.iconLeft{
+    float: left;
+    margin-right: 10px;
 }

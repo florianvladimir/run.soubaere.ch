@@ -33,10 +33,14 @@ $datum=explode("00",$datum)[0];
 
     if($ziele!=""){
     echo "<div class='ziele_auswert'>";
+    echo "<div class='ziele_auswert_ueb'>";
     echo "<h1>Zielsetzung</h1>";
+    echo "<a href='changeziel?id=".$id."'>";
+    echo "<i class=\"fas fa-pen icon\"></i></a>";
+    echo "</div>";
     echo "<p class='zieleSchrift'>".nl2br($ziele)."</p>";}
     ?>
         </div>
     </article>
 </main>
-</body>
+

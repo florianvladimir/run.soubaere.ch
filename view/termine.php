@@ -81,7 +81,7 @@
                 echo "<div class=\"master\">
         <article class=\"bigTermine smallSize\" id=\"move\">
             <div class=\"terminName\">";
-                echo "<h4>" . $data[8] . ", " . $data[10] . "</h4>";
+                echo "<h4 title='". $data[8] . ", " . $data[10] ."'>" . $data[8] . ", " . $data[10] . "</h4>";
                 echo "<p class='TerminTitel'>" . $data[11] . "</p>";
                 echo "</div>";
                 echo "<a href=".linkCoord($data[13],$data[14])." target=\"_blank\">";

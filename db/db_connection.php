@@ -55,7 +55,7 @@ Create TABLE basic_detail(
  */
 function connect()
 {
-    $db = new Mysqli('localhost', 'root', '', 'ttpdb');
+    $db = new Mysqli('localhost', 'root', '', 'ttpdb2');
     return $db;
     $db->close();
 }
@@ -514,7 +514,7 @@ function selectEinheitOLByID_Termin($id){
 
 function selectallEvent(){
     $db=connect();
-    $sql = "SELECT * FROM basic_detail where Planung != 'tru' order by ID_Basic_Detail desc";
+    $sql = "SELECT * FROM basic_detail join basicinfoevent on ID_BasicInfo=basicinfo_ID where Planung != 'tru' order by Datum desc";
     $result = $db->query($sql);
     return $result;
 }
@@ -533,7 +533,7 @@ function selectlastEvent(){
 }
 function selectallTermine(){
     $db=connect();
-    $sql = "SELECT * FROM basic_detail where Planung like 'tru' order by ID_Basic_Detail desc";
+    $sql = "SELECT * FROM basic_detail join detailinfoeventol on detailinfool_ID=ID_DetailInfo where basic_detail.Planung like 'tru' order by wdate asc";
     $result = $db->query($sql);
     return $result;
 }

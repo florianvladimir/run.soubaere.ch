@@ -45,6 +45,12 @@
     width: 500px;
     height: 100%;
     margin-left: 20px;
+
+}
+.terminName h4{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .terminLocation-txt{
@@ -82,11 +88,13 @@
     background-repeat: no-repeat;
     position: relative;
 
+
 }
 
 .TerminTitel{
     font-size: 2em;
     margin: 10px 0;
+
 
 }
 

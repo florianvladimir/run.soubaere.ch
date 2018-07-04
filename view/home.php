@@ -22,8 +22,9 @@
         <h2 class="dark centerTxt">Neue Einheit</h2>
 
         <div class="btn btnnewrunto">
+            <a href="newtermin">
             <div  id="" class="button btndark" ><span>Einheit Planen</span></div></a>
-            <div  id="btnnewrun" class="button btndark" ><span>Einheit erfassen</span></div></a>
+            <div  id="btnnewrun" class="button btndark" ><span>Einheit erfassen</span></div>
         </div>
 
     </div>
