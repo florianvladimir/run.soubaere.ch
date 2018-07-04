@@ -213,9 +213,19 @@ elseif(1==1){
                         </div>
                     </div>
                     </div>
-                    <div id="zielsetzung">
-                        <p>Auswertung</p>
-                        <textarea placeholder="Auswertung:" rows="20" name="ziele" id="ziele" cols="40" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+
+                    <div id="auswertung">
+                        <div class="continer_aus_ueb">
+                            <div class="aus_ueb">
+                                <p>Auswertung</p>
+                            </div>
+                            <label class="switch" onclick="switchSlider()">
+                                <input type="checkbox" id="slider_chbx">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <textarea placeholder="Auswertung:" rows="20" name="auswertung"  id="auswetung_txt" cols="40" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
                     </div>
                     <div class="btn" style="margin-top: 5px">
                         <input type="submit" class="button btnsave" value="Speichern" style="margin-top: 5px"></inut>

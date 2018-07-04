@@ -443,6 +443,7 @@ function selectEinheitOLByID($id){
             $res['disziplin']=$row['NameDisziplin'];
             $res['KarteBild']=$row['gpsjpg'];
             $res['ziele']=$row['planung'];
+            $res['auswertung']=$row["auswertung"];
         }
     }
     return $res;
@@ -534,8 +535,8 @@ function updateDetailInfool(){
     $dekl=dataIsset($data,'deklaration');
     $disz=dataIsset($data,'disziplin');
 
-    $statement2 = $db->prepare('UPDATE detailinfoeventol set MapName=?,ort=?,stand=?,massstab=?,gelaendeGrob_ID=?,gelaendeFein_ID=?,deklaration_ID=?,disziplin_ID=?,gpsjpg=? where stringID="'.$id.'"');
-    $statement2->bind_param('ssssiiiis', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$_SESSION['jpg']['destination']);
+    $statement2 = $db->prepare('UPDATE detailinfoeventol set MapName=?,ort=?,stand=?,massstab=?,gelaendeGrob_ID=?,gelaendeFein_ID=?,deklaration_ID=?,disziplin_ID=?,gpsjpg=?, auswertung=? where stringID="'.$id.'"');
+    $statement2->bind_param('ssssiiiiss', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$_SESSION['jpg']['destination'],$data['auswertung']);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
 }

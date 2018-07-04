@@ -22,3 +22,15 @@ function showUpload(){
     }
 
 }
+
+function switchSlider() {
+    var auswertung=document.getElementById("auswetung_txt");
+    var slider=document.getElementById("slider_chbx").checked;
+
+    if(slider){
+        auswertung.style.display="block";
+    }
+    else{
+        auswertung.style.display="none";
+    }
+}

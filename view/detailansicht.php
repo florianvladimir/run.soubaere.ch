@@ -77,6 +77,7 @@ function htmlOL($info){
         htmlbasicInfo($info);
         htmlDetailOLInfo($info);
         planung($info);
+        auswertung($info);
         ?>
 
     </article>
@@ -153,9 +154,19 @@ function htmlDetailOLInfo($info){
 <?php
 }
 function planung($data){
-    if($data['detailInfo']['ziele']!=""){
-    echo "<div class='ziele_auswert'>";
-    echo "<h1>Zielsetzung</h1>";
-    echo "<p class='zieleSchrift'>".nl2br($data['detailInfo']['ziele'])."</p>";}
+    if($data['detailInfo']['ziele']!="") {
+        echo "<div class='ziele_auswert'>";
+        echo "<h1>Zielsetzung</h1>";
+        echo "<p class='zieleSchrift'>" . nl2br($data['detailInfo']['ziele']) . "</p>";
+        echo "</div>";
+    }
+}
+function auswertung($data){
+    if($data['detailInfo']['auswertung']!=""){
+        echo "<div class='ziele_auswert'>";
+        echo "<h1>Auswertung</h1>";
+        echo "<p class='zieleSchrift'>".nl2br($data['detailInfo']['auswertung'])."</p>";
+        echo "</div>";
+    }
 }
 
