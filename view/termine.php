@@ -10,20 +10,24 @@
         display: none;
     }
 </style>
+
 <body onload="widthTerm()">
 <main id="content33">
     <article class="bigTermine" id="titelTermine">
         <h1 class="dark">Termine</h1>
         <p class="termin-info-txt">Alle Termine der OL-Saison auf einem Blick</p>
         <div class="btn">
-            <?php if($_GET["strdat"]=="now"){?>
+            <?php
+            //Button für die Sortiewrung der Termine
+            if($_GET["strdat"]=="now"){
+                ?>
             <a href="termine?strdat=alle">
-                <div class="button"><span>alle Anzeigen</span></div></a>
+                <div class="button"><span>alle anzeigen</span></div></a>
             <?php }
             else{
                 ?>
                 <a href="termine?strdat=now">
-                    <div class="button"><span>aktuelle Anzeigen</span></div></a>
+                    <div class="button"><span>aktuelle anzeigen</span></div></a>
                 <?php
             }
             ?>
@@ -35,23 +39,31 @@
 
     $monL=array("Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
     $row = 1;
+    //Öffnen eines Fiels in PHP
     if (($handle = fopen("./uploads/csv/dates.csv", "r")) !== FALSE) {
+        //Durch alle Daten iterieren
         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
             $num = count($data);
+            //UTF-8, sonst werden Umlaute nicht richtig dargestellt
             $data=array_map("utf8_encode", $data);
+            //Erste Zeile überspringen
             if($row==1){
                 $row++;
             }
+
             else {
+                //Wenn alle Trmine des Jahres Dargestellt werden sollen
                 if($_GET["strdat"]=="alle"){
                     $gestern="2018-01-01";
                 }
+                //Nur aktuelle Termine
                 else if($_GET["strdat"]=="now"){
                 $datTag=date("d");
                 $datMon=date("m");
                 if($datTag>8){
                     $datTag=$datTag-8;
                 }
+                //Wenn das aktuelle Datum kleiner als 8 ist --> Anderer Monat
                 else{
                     $dif=$datTag-8;
                     $datMon=$datMon-1;
@@ -60,9 +72,10 @@
                     }
                     $datTag=30+$dif;
                 }
+                //$gesten--> Datum ab wann Termine dargestellt werden sollen
                 $gestern  = date("Y")."-".$datMon."-".$datTag;
             }
-
+                //Darstellung der Termin-Kacheln
                 if($data[1]>=$gestern){
                 $row++;
                 echo "<div class=\"master\">
@@ -76,9 +89,11 @@
                 echo "<p class='light terminLocation-txt'>" . $data[12] . "</p>";
                 echo "</div>";
                 echo "</a>";
+                echo "<a href=".$data[9]." target=\"_blank\">";
                 echo "<div class=\"terminContainer terminInfo\">";
                 echo "<p class=\"light terminLocation-txt\">Info</p>";
                 echo "</div>";
+                echo "</a>";
 
                 $tag = explode("-", $data[1]);
                 $tag2 = $tag[2];
@@ -91,6 +106,7 @@
                 echo "</article></div>";
             }}
         }
+        //File-Schliessen
         fclose($handle);
     }
     ?>
@@ -99,7 +115,7 @@
 </body>
 
 <?php
-
+//Generieren des Linkes für die Karte
 function linkCoord($x,$y){
     $linkStr="https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.zeitreihen,ch.bfs.gebaeude_wohnungs_register,ch.bav.haltestellen-oev,ch.swisstopo.swisstlm3d-wanderwege&layers_visibility=false,false,false,false&layers_timestamp=18641231,,,&E=".$x."&N=".$y."&zoom=8";
     return $linkStr;

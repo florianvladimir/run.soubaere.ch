@@ -1,8 +1,7 @@
 <main id="content">
-    <article class="big" id="welcome">
+    <article class="big" id="welcome1">
         <h1 class="dark">Training</h1>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
         </p>
     </article>
     <div class="small" id="ug1">

@@ -50,14 +50,18 @@ Create TABLE basic_detail(
     FOREIGN KEY (detailinfodl_ID) REFERENCES detailinfoeventdl (ID_DetailInfoDL),
     FOREIGN KEY (detailinfoanders_ID) REFERENCES detailinfoeventanders (ID_DetailInfoAnders))
 */
-
+/*
+ * Verbindung mit der DB
+ */
 function connect()
 {
     $db = new Mysqli('localhost', 'root', '', 'ttpdb');
     return $db;
     $db->close();
 }
-
+/*
+ * Fugt die BasisInfo hinzu, wenn die Einheit bereits besteht --> Keine neue stringID
+ */
 function insertBasicInfowithTermin($id){
     $data = $_SESSION['aktGPXn'];
     $db = connect();
@@ -75,7 +79,9 @@ function insertBasicInfowithTermin($id){
 
     $db->close();
 }
-
+/*
+ * Fügt die BasisInfo neu ein
+ */
 function insertBasicInfo(){
     $data = $_SESSION['aktGPXn'];
 
@@ -96,12 +102,14 @@ function insertBasicInfo(){
 
     $db->close();
 }
-
+/*
+ * Füg die Detailinfos eines OLs hinzu
+ */
 function inserteventol(){
     $data = $_SESSION['upload'];
     unset($_SESSION['upload']);
     $db = connect();
-
+    //Wenn die BasisInfos noch nicht existieren
     if(!isset($_SESSION['aktGPXn'])){
 
 
@@ -132,6 +140,7 @@ function inserteventol(){
     $statement2->bind_param('ssssiiiiss', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$id,$_SESSION['jpg']['destination']);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
+    //Sucht die ID der Basis und Detail Tabellen mit der StringID damit sie dar Zwischentablelle hinzugefügt wwerden können
     $idBasicInfo=selectBasicInfoIDByStringID($id);
     $idDetailInfo=selectDetailInfoOlIDByStringID($id);
     echo "Detail: ".$idDetailInfo;
@@ -141,8 +150,11 @@ function inserteventol(){
     $statement3->bind_param('ss',$idBasicInfo,$idDetailInfo);
     if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 }
-
+/*
+ * Füg die Detailinfos eines DLs hinzu
+ */
 function inserteventdl(){
+    //Bei inserteventol schauen
     $data = $_SESSION['upload'];
     $bild = randomPic();
     unset($_SESSION['upload']);
@@ -186,7 +198,9 @@ function inserteventdl(){
     if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
 }
-
+/*
+ * Füg die Detailinfos eines anders hinzu
+ */
 function inserteventanders(){
     $bild = randomPic();
     $data = $_SESSION['upload'];
@@ -230,6 +244,9 @@ function inserteventanders(){
     $statement3->bind_param('ss',$idBasicInfo,$idDetailInfo);
     if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 }
+/*
+ * Fügt einen Termin hinzu (Orintierungslauf)
+ */
 function insertTermin(){
     $db = connect();
     $id=generateRandomString(32);
@@ -248,7 +265,9 @@ function insertTermin(){
     $statement3->bind_param('ss',$idDetailInfo,$pl);
     if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 }
-
+/*
+ * Gibt die ID von der Basisinfo zurück. StringID wird benötigt
+ */
 function selectBasicInfoIDByStringID($stringID){
     $db = connect();
     $sql= "SELECT ID_BasicInfo FROM basicinfoevent WHERE stringID = '".$stringID."'";
@@ -266,7 +285,9 @@ function selectBasicInfoIDByStringID($stringID){
     echo "<br>";
     return $resID;
 }
-
+/*
+ * Gibt die ID von von Detail OL zurück. StringID wird benötigt
+ */
 function selectDetailInfoOlIDByStringID($stringID){
     $db = connect();
     $sql= "SELECT ID_DetailInfo FROM detailinfoeventol WHERE stringID = '".$stringID."'";
@@ -283,7 +304,9 @@ function selectDetailInfoOlIDByStringID($stringID){
 
     return $resID;
 }
-
+/*
+ * Gibt die ID von von Detail DL zurück. StringID wird benötigt
+ */
 function selectDetailInfoDlIDByStringID($stringID){
     $db = connect();
     $sql= "SELECT ID_DetailInfoDl FROM detailinfoeventdl WHERE stringID = '".$stringID."'";
@@ -300,7 +323,9 @@ function selectDetailInfoDlIDByStringID($stringID){
 
     return $resID;
 }
-
+/*
+ * Gibt die ID von von Detail anders zurück. StringID wird benötigt
+ */
 function selectDetailInfoAndersIDByStringID($stringID){
     $db = connect();
     $sql= "SELECT ID_DetailInfoAnders FROM detailinfoeventanders WHERE stringID = '".$stringID."'";
@@ -318,9 +343,9 @@ function selectDetailInfoAndersIDByStringID($stringID){
     return $resID;
 }
 
-/**
- * @param $basicInfoID
- * @return mixed
+/**Gibt Einheit zurück
+ * @param $basicInfoID ($onlyTer==Leiche-->Immer True)
+ * @return Infos zur Einheit
  */
 function selectEinheitByBasicDetailID($basicInfoID,$onlyTer){
     $db = connect();
@@ -358,6 +383,12 @@ function selectEinheitByBasicDetailID($basicInfoID,$onlyTer){
 
     return $res;
 }
+
+/**Gibt einen Termin zurück
+ * @param $basicInfoID
+ * @param $onlyTer --> Leiche(immer false)
+ * @return mixed
+ */
 function selectEinheitByBasicDetailID_Termin($basicInfoID,$onlyTer){
     $db = connect();
     $sql= "SELECT * FROM basic_detail WHERE ID_Basic_Detail = '".$basicInfoID."'";
@@ -395,6 +426,10 @@ function selectEinheitByBasicDetailID_Termin($basicInfoID,$onlyTer){
     return $res;
 }
 
+/**Gibt Detail-Einheit Anders zurück
+ * @param $id
+ * @return mixed
+ */
 function selectEinheitAndersByID($id){
     $db = connect();
     $sql= "SELECT * FROM detailinfoeventanders join intensitaet on Intens_ID=ID_Intens WHERE ID_DetailInfoAnders = '".$id."'";
@@ -411,6 +446,10 @@ function selectEinheitAndersByID($id){
 
 }
 
+/**Gibt Detail-Einheit Dl zurück
+ * @param $id
+ * @return mixed
+ */
 function selectEinheitDlByID($id){
     $db = connect();
     $sql= "SELECT * FROM detailinfoeventdl join dlform on DLForm_ID=ID_DLForm WHERE ID_DetailInfoDl = '".$id."'";
@@ -426,6 +465,10 @@ function selectEinheitDlByID($id){
     return $res;
 }
 
+/**Gibt Detail-Einheit OL zurück
+ * @param $id
+ * @return mixed
+ */
 function selectEinheitOLByID($id){
     $db = connect();
     $sql= "SELECT * FROM detailinfoeventol join disziplin on ID_Disziplin=Disziplin_ID join deklaration on ID_Deklaration=Deklaration_ID join gelaende on ID_Gelaende=gelaendeGrob_ID join gelaendeFein on ID_GelaendeFein=GelaendeFein_ID WHERE ID_DetailInfo = '".$id."'";
@@ -449,6 +492,10 @@ function selectEinheitOLByID($id){
     return $res;
 }
 
+/**Gibt Detail-Einheit OL_Termin zurück
+ * @param $id
+ * @return mixed
+ */
 function selectEinheitOLByID_Termin($id){
     $db = connect();
     $sql= "SELECT * FROM detailinfoeventol WHERE ID_DetailInfo = '".$id."'";
@@ -508,6 +555,10 @@ function selectTeminById($id){
 
 }
 
+/**
+ * @param $id
+ * @return StringID
+ */
 function StringIDwithBDID($id){
     $db=connect();
     $sql = "SELECT * FROM basic_detail join detailinfoeventol on ID_Detailinfo=detailInfool_ID where basic_detail.Planung like 'tru' and ID_Basic_Detail='".$id."'";
@@ -554,7 +605,9 @@ function updateBasicInfoTermin(){
 
 }
 
-
+/**Wählt ein zufälliges Bild aus
+ * @return mixed
+ */
 function randomPic(){
     $array = array("pictures/stone1_small.jpg", "pictures/stone2_small.jpg", "pictures/lake_small.jpg", "pictures/meer1_small.jpg","pictures/meer2_small.jpg","pictures/meer3_small.jpg");
     $rand= rand ( 1, 6 );

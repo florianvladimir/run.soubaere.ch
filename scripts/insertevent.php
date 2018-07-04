@@ -5,9 +5,12 @@
  * Date: 21.06.2018
  * Time: 16:40
  */
-$_SESSION['upload']=$_POST;
 
+//Wird aufgerufen, wenn man eine neue Einheit erstellt
+$_SESSION['upload']=$_POST;
+//Wenn es ein OL ist:
 if(isset($_POST['Gelaende_grob'])){
+    //Karte heraufladen
     $target_dir = "uploads/karten/";
 
     $count=0;
@@ -42,12 +45,13 @@ if(isset($_POST['Gelaende_grob'])){
         else{
             echo "falsches format";
         }
-
+    //Daten Zzur DB hinzufügen
     inserteventol();
     header("Location: home");
 }
-
+//Wenn es ein DL ist
 elseif(isset($_POST['DL_Form'])){
+    //Daten zur DB hinzufügen
     inserteventdl();
     header("Location: home");
 }

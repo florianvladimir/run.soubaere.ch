@@ -17,7 +17,8 @@ and open the template in the editor.
 body{
     margin: 0;
     font-family: coool,Arial,sans-serif;
-    background-color: #eee;
+    background-color: #ddd;
+
 
 }
 
@@ -30,6 +31,13 @@ a{
     width: 100%;
     height: 100px;
 
+}
+
+#welcome{
+    background-image: url(../pictures/logo.png);
+    background-size: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -669,6 +677,7 @@ input[type=checkbox]:checked ~ #menu{
     #welcome{
         width: 480px;
         height: 270px;
+
     }
     .big p, .big h1{
         width: 444px;}

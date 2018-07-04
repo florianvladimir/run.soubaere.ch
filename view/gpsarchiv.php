@@ -1,5 +1,6 @@
 <main id="content">
 <?php
+//Stellt jedes Training dar -->Übersicht
 $result = selectallEvent();
 $i=0;
 if ($result->num_rows > 0) {
@@ -15,7 +16,9 @@ if ($result->num_rows > 0) {
         $i++;
     }
 }
-
+/*
+ * Kacheln auf der linken Seite
+ */
 function htmlUebLeft($data,$row,$i){
     $i++;
     ?>
@@ -36,7 +39,9 @@ function htmlUebLeft($data,$row,$i){
     <?php
 }
 
-
+/*
+ * Kacheln auf der rechten Seite
+ */
 function htmlUebRight($data,$row, $i){
     $i++;
     ?>

@@ -5,6 +5,9 @@
  * Date: 22.06.2018
  * Time: 09:02
  */
+/*
+ * Eindeutiger String, der gebraucht wird, damit den Basisinfos die richtigen Detailinfos zugefügt werden können
+ */
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -14,7 +17,9 @@ function generateRandomString($length = 10) {
     }
     return $randomString;
 }
-
+/*
+ *  Überprüft, ob die Dropdowns der Formulare auf dem Standartwert sind. Wenn ja dann wird null zurückgegeben sonst die ensprechende Zahl
+ */
 function dataIsset($data,$string){
     if(($data[$string])==0){
         return null;
@@ -22,6 +27,9 @@ function dataIsset($data,$string){
     return $data[$string];
 }
 
+/*
+ * Gibt die Kordinaten des ersten aufgezeichneten Punktes zurück
+ */
 function getCoord($file){
     $result="";
     $xml = simplexml_load_file($file) or die("Error: Cannot create object");
@@ -38,7 +46,9 @@ function getCoord($file){
     //echo $result;
     return $result.", '".$file."'";
 }
-
+/*
+ * Generiert eine zufällige Farbe (Baluton)
+ */
 function generateRandomColor(){
     $a=array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
     $res="#";
@@ -49,7 +59,9 @@ function generateRandomColor(){
     $res=$res."ff";
     return $res;
 }
-
+/*
+ * Formular zum auswählen des GPX
+ */
 function gpxUpload(){
     ?>
     <div id="myModal" class="modal">

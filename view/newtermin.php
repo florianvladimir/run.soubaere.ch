@@ -4,13 +4,16 @@
             <form method="post" action="newterminupload" name="zSetzung">
 
 <?php
-
+//Wenn man von einem SOLV-Termin kommt werden dessen Infos aus dem CSV gelesen und in die Inputfelder geschrieben.
 if(isset($_GET["wid"])){
 $id=$_GET["wid"];
 $row = 1;
+//Öffnen eines Fiels in PHP
 if (($handle = fopen("./uploads/csv/dates.csv", "r")) !== FALSE) {
+    //Durch alle Daten iterieren, wenn die IDs übereinstimmen wird das HTML gemacht
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
+        //UTF-8, sonst werden Umlaute nicht richtig dargestellt
         $data=array_map("utf8_encode", $data);
         if($row==1){
             $row++;

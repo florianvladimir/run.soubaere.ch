@@ -1,6 +1,7 @@
 
 <main id="content">
 <?php
+//Stellt jeder geplante Wettkampf dar
 $result = selectallTermine();
 $i=0;
 

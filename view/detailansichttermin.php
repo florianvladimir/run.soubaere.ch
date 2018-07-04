@@ -5,7 +5,9 @@
  * Date: 03.07.2018
  * Time: 09:21
  */
+//ID des Termins aus der URL auslesen
 $id=$_GET['id'];
+//Temin aus Datenbank
 $result=selectTeminById($id);
 if ($result->num_rows > 0) {
     // output data of each row
@@ -16,6 +18,7 @@ if ($result->num_rows > 0) {
         $ziele=$row['planung'];
     }
 }
+//Nur Datum, keine Zeit
 $datum=explode("00",$datum)[0];
 ?>
 

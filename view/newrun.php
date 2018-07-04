@@ -1,4 +1,7 @@
-<?php if($_GET["termin"]=='false') { ?>
+<?php
+//Wird angezeigt, wenn man ein Training ohne Termin erstellen will
+if($_GET["termin"]=='false') {
+    ?>
     <main id="content">
         <article class="contFormular">
             <div class="formular">
@@ -8,6 +11,7 @@
                     <option value="2">Dauerlauf</option>
                     <option value="3">Andere Aktivität</option>
                 </select>
+                <!-- Wenn beim Select OL ausgewählt wird-> Session wird später gebraucht -->
                 <form id="sportat-ol" class="backgrundGrayTransparent" action="insertevent" method="post"
                       enctype="multipart/form-data">
                     <?php $_SESSION["sportart"] = 1; ?>
@@ -49,7 +53,7 @@
                             <option value="5">Staffel</option>
                             <option value="6">Nacht-OL</option>
                         </select>
-
+                        <!-- Wenn die Werte aus dem GPX ausgelesen werden konnten werden diese Inputs nicht angezeigt-->
                         <?php if (!isset($_SESSION['aktGPXn']['Distanz'])) { ?>
                             <input type="text" name='distanz' class='inp' placeholder="Distanz in KM" required>
                         <?php } ?>
@@ -74,6 +78,7 @@
                         <input type="submit" class="button btnsave" value="Speichern"></inut>
                     </div>
                 </form>
+                <!-- Wenn beim Select DL ausgewählt wird-> Session wird später gebraucht -->
                 <form id="sportat-dl" class="backgrundGrayTransparent" action="insertevent" method="post">
                     <?php $_SESSION["sportart"] = 2; ?>
                     <div id="karte">
@@ -87,6 +92,7 @@
                             <option value="4">langsamer DL</option>
                             <option value="5">Footing</option>
                         </select>
+                        <!-- Wenn die Werte aus dem GPX ausgelesen werden konnten werden diese Inputs nicht angezeigt-->
                         <?php if (!isset($_SESSION['aktGPXn']['Distanz'])) { ?>
                             <input type="text" name='distanz' class='inp' placeholder="Distanz in KM" required>
                         <?php } ?>
@@ -105,6 +111,7 @@
                         <input type="submit" class="button btnsave" value="Speichern"></inut>
                     </div>
                 </form>
+                <!-- Wenn beim Select anders ausgewählt wird-> Session wird später gebraucht -->
                 <form id="sportat-anders" class="backgrundGrayTransparent" action="insertevent" method="post">
                     <?php $_SESSION["sportart"] = 3; ?>
                     <div id="karte">
@@ -118,6 +125,7 @@
                             <option value="4">intensiv</option>
                             <option value="5">überschwellig</option>
                         </select>
+                        <!-- Wenn die Werte aus dem GPX ausgelesen werden konnten werden diese Inputs nicht angezeigt-->
                         <?php if (!isset($_SESSION['aktGPXn']['Distanz'])) { ?>
                             <input type="text" name='distanz' class='inp' placeholder="Distanz in KM" required>
                         <?php } ?>
@@ -141,6 +149,7 @@
     </main>
     <?php
 }
+//Wird angezeigt, wenn man die Auswertung einem Termin hinzufügen will
 elseif(1==1){
     ?>
     <main id="content">

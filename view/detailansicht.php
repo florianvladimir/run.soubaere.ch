@@ -1,10 +1,12 @@
 <?php
+//Id aus URL auslesen, Daten des Beitrages aus Datenbank laden
 $id=$_GET['id'];
 $info=selectEinheitByBasicDetailID($id,true);
 if($info['basicInfo']['file']!=""){
-
+//Ladet die Koordinaten des GPX
 $coor = getCoord($info['basicInfo']['file']);
 }
+//Bild über den Infos --> Bei OL die Karte
 echo "<style>".'#picgpsGr{ background-image: url('.$info['detailInfo']['KarteBild'].')}'."</style>";
 ?>
 
@@ -33,7 +35,9 @@ echo "<style>".'#picgpsGr{ background-image: url('.$info['detailInfo']['KarteBil
 
 
 
-
+/*
+ * Darstellung des Kategorie "Andere Sportart"
+ */
 function htmlAndereSportart($info){
     ?>
     <a class="big" id="picgpsGr"></a>
@@ -50,6 +54,9 @@ function htmlAndereSportart($info){
 <?php
 }
 
+/*
+ * Darstllung der Kategorie "Dauerlauf"
+ */
 function htmlDL($info){
     ?>
     <a class="big" id="picgpsGr"></a>
@@ -66,6 +73,9 @@ function htmlDL($info){
     <?php
 }
 
+/*
+ * Darstellung der Kategorie "OL"
+ */
 function htmlOL($info){
     ?>
    <a class="big" id="picgpsGr" href="<?php echo $info['detailInfo']['KarteBild']?>" target="_blank" title="Ansehen"></a>
@@ -84,6 +94,9 @@ function htmlOL($info){
     <?php
 }
 
+/*
+ * Darsellung der Basis-Infos, die jede Sportart besitzt
+ */
 function htmlbasicInfo($info){
     ?>
 
@@ -115,7 +128,9 @@ function htmlbasicInfo($info){
 
     <?php
 }
-
+/*
+ * Detailinfos vom OL
+ */
 function htmlDetailOLInfo($info){
     ?>
     <div class="basicInfo" id="basicInfoBoxGrossOL">
@@ -153,6 +168,10 @@ function htmlDetailOLInfo($info){
     </div>
 <?php
 }
+
+/*
+ * Das Planungs DIV mit den Zielen
+ */
 function planung($data){
     if($data['detailInfo']['ziele']!="") {
         echo "<div class='ziele_auswert'>";
@@ -161,6 +180,9 @@ function planung($data){
         echo "</div>";
     }
 }
+/*
+ * Auswertungs DIV mit der Auswertung
+ */
 function auswertung($data){
     if($data['detailInfo']['auswertung']!=""){
         echo "<div class='ziele_auswert'>";

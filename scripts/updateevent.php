@@ -6,6 +6,8 @@
  * Time: 14:37
  */
 
+//Termin --> Einheit
+
 $_SESSION['upload']=$_POST;
 $target_dir = "uploads/karten/";
 
@@ -41,7 +43,7 @@ if (in_array($fileActualExt, $allowed)) {
 else{
     echo "falsches format";
 }
-
+//Updaten der Datenbank-->Hinzufügen der zusätzlichen Infos
 updateDetailInfool();
 updateBasicInfoTermin();
 header("Location: gps");

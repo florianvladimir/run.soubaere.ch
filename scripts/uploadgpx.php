@@ -6,7 +6,7 @@
  * Time: 09:01
  */
 
-
+//Uploaden des GPX
 $target_dir = "uploads/gpx/";
 
 
@@ -47,14 +47,20 @@ if (in_array($fileActualExt, $allowed)) {
         </SCRIPT>");
 }
 
+/*
+ * Auslesen des GPX
+ */
+//Landen des GPX. mit den Pfeilen kann man die gewünschten Infos
 $xml=simplexml_load_file($fileDest) or die("Error: Cannot create object");
 $a=$xml->trk->trkseg->children();
 
 //Distanz
-$len=sizeof($a)-1;
+$len=sizeof($a)-1;//Letztes Objekt
+//Auslesen der GPX-Extensions
 $namespace=$xml->trk->trkseg->trkpt[$len]->getNamespaces(true);
 $gpxext=$xml->trk->trkseg->trkpt[$len]->extensions->children($namespace['gpxdata']);
 $distance = (string) $gpxext->distance;
+
 //Zeit
 $zeitStart = $xml->trk->trkseg->trkpt[0]->time;
 $zeitEnde = $xml->trk->trkseg->trkpt[$len]->time;
@@ -67,12 +73,15 @@ $zeit=getRunTime($zeitStart,$zeitEnde);
 //Höhe
 $verticalheight=0;
 $altitudeold=123456789;
+//Durch das gesamte File iterieren
 foreach($a as $aa){
     $namespace=$aa->getNamespaces(true);
+    //Auslesen der GPX-Extensions
     $gpxext=$aa->extensions->children($namespace['gpxdata']);
     $altitudenew = (int) $gpxext->altitude;
     if($altitudeold!=123456789){
         if($altitudeold<$altitudenew) {
+            //Zusammenzählen der Höhe: immer Differenz vom aktuellen m.Ü.M Wert zum vorherigem
             $verticalheight = $verticalheight + ($altitudenew - $altitudeold);
         }
     }
@@ -82,8 +91,8 @@ foreach($a as $aa){
 }
 
 $avgHr=0;
-//HR
 
+//HR
 try {
     foreach ($a as $blabla) {
         $namespace2 = $blabla->getNamespaces(true);
@@ -108,14 +117,14 @@ echo "<br>";
 echo "Datum: ".$datum;
 echo "<br>";
 echo "HR: ".$avgHr;*/
-
+//Speichern der Daten in der Session
 $_SESSION['aktGPXn']['Distanz']=round($distance/1000,2,PHP_ROUND_HALF_UP);
 $_SESSION['aktGPXn']['verticalheight']=$verticalheight;
 $_SESSION['aktGPXn']['time']=$zeit;
 $_SESSION['aktGPXn']['Datum']=$datum;
 $_SESSION['aktGPXn']['hr']=$avgHr;
 $_SESSION['aktGPXn']['file']=$fileDest;
-
+//Wenn man von einem Termin kommt: --> Weil Einheit schon besteht anderes Verfahren
 if(isset($_SESSION["aktB_B_ID"])){
     insertBasicInfowithTermin($_SESSION["aktB_B_ID"]);
     $result=selectTeminById($_SESSION["aktB_B_ID"]);
@@ -142,8 +151,9 @@ else {
 }
 
 
-
+//Gibt die Zeit im richtigen Fomat zurück
 function dataToTinme($datum,$bool){
+    //Nur Zeit
     if($bool){
         $zeit = explode('T', $datum)[1];
         $zeit = explode('.',$zeit)[0];}
@@ -157,7 +167,7 @@ function dataToTinme($datum,$bool){
     }
     return $zeit;
 }
-
+//Berechnet die Zeit des Laufes
 function getRunTime($start,$ende){
     /*$startA=explode(':',$start);
     $endeA=explode(':',$ende);
@@ -166,6 +176,7 @@ function getRunTime($start,$ende){
     $minute=addZero($minute);
     $sekunden=(int)$endeA[2]-(int)$startA[2];
     $sekunden=addZero($sekunden);*/
+    //Zeit zu Sekunde
     $firstTime=strtotime($start);
     $lastTime=strtotime($ende);
 
@@ -176,7 +187,7 @@ function getRunTime($start,$ende){
     $sekunden=addZero($res['sec']);
     return $res['std'].":".$minute."'".$sekunden;
 }
-
+//Wenn die Zahl kleiner als 9 ist werden noch 0 hinzugefügt
 function addZero($zeit){
     if($zeit<=9){
         return "0".$zeit;
@@ -185,7 +196,7 @@ function addZero($zeit){
         return $zeit;
     }
 }
-
+//Sekunden zu Zeit
 function timespanArray( $seconds ){
 
     $td['total'] = $seconds;
