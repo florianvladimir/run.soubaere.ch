@@ -173,22 +173,62 @@ function htmlDetailOLInfo($info){
  * Das Planungs DIV mit den Zielen
  */
 function planung($data){
-    if($data['detailInfo']['ziele']!="") {
+
+
         echo "<div class='ziele_auswert'>";
-        echo "<h1>Zielsetzung</h1>";
-        echo "<p class='zieleSchrift'>" . nl2br($data['detailInfo']['ziele']) . "</p>";
+        echo "<div  class='ziele_auswert_ueb'>";
+        echo "<h1 id='id_ziele_ueb'>Zielsetzung</h1>";
+        if($data['detailInfo']['ziele']=="") {
+            echo "<i id='changeZ' class=\"fas fa-plus icon\" onclick='zieleBe()'></i>";
+        }
+        else{
+            echo "<i id='changeZ' class=\"fas fa-pen icon\" onclick='zieleBe()'></i>";
+        }
         echo "</div>";
-    }
+
+        echo "<p id='zieleSchrift' class='zieleSchrift'>".nl2br($data['detailInfo']['ziele'])."</p>";
+?>
+<form method="post" action="changeziel?id=<?php echo $_GET["id"] ?>&ansicht=1" name="zSetzung" id="zSetzung">
+    <div id="zielsetzung">
+
+        <textarea  rows="20" name="ziele" id="ziele" cols="40" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"><?php echo $data['detailInfo']['ziele'] ?></textarea>
+    </div>
+    <div class="btn" style="margin-bottom: 20px">
+        <input type="submit" class="button btnsave" value="Speichern">
+    </div>
+</form>
+</div>
+<?php
+
 }
 /*
  * Auswertungs DIV mit der Auswertung
  */
 function auswertung($data){
-    if($data['detailInfo']['auswertung']!=""){
+
         echo "<div class='ziele_auswert'>";
-        echo "<h1>Auswertung</h1>";
-        echo "<p class='zieleSchrift'>".nl2br($data['detailInfo']['auswertung'])."</p>";
+        echo "<div  class='ziele_auswert_ueb'>";
+        echo "<h1 id='id_auswert_ueb'>Auswertung</h1>";
+        if($data['detailInfo']['auswertung']=="") {
+            echo "<i id='changeZ' class=\"fas fa-plus icon\" onclick='auswBe()'></i>";
+        }
+        else{
+            echo "<i id='changeZ' class=\"fas fa-pen icon\" onclick='auswBe()'></i>";
+        }
         echo "</div>";
-    }
+        echo "<p id='auswertSchrift' class='zieleSchrift'>".nl2br($data['detailInfo']['auswertung'])."</p>";
+        ?>
+<form method="post" action="changeziel?id=<?php echo $_GET["id"] ?>&ansicht=3" name="zSetzung" id="aSetzung">
+    <div id="zielsetzung">
+
+        <textarea  rows="20" name="auswertung" id="ziele" cols="40" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"><?php echo $data['detailInfo']['auswertung'] ?></textarea>
+    </div>
+    <div class="btn" style="margin-bottom: 20px">
+        <input type="submit" class="button btnsave" value="Speichern">
+    </div>
+</form>
+</div>
+<?php
+
 }
 

@@ -53,24 +53,25 @@ function dragElement(elmnt,j) {
         e = e || window.event;
         e.preventDefault();
         // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
+        pos1 = (pos3 - e.clientX)/1.5;
+        //pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
-        pos4 = e.clientY;
+        //pos4 = e.clientY;
+        console.log(e.clientX);
         // set the element's new position:
-        //elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+
         var x= window.innerWidth;
         var y= elmnt.offsetLeft+elmnt.offsetWidth;
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         var aktAbstand = x-y;
-        console.log(aktAbstand);
-        console.log("..."+abstand);
+        //console.log(aktAbstand);
+        //console.log("..."+abstand);
         elmnt.style.opacity=aktAbstand/abstand+"";
         var wid=elmnt.childNodes;
         if(y>=x-100){
             elmnt.style.display="none";
             var link = ' newtermin?wid='+wid[5].innerText+" ";
-            console.log(link);
+            //console.log(link);
             //setTimeout("self.location.href='termine'",1000);
             //setTimeout("self.location.href=link",10)
             window.location.replace(link);

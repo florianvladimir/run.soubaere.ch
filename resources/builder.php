@@ -71,6 +71,7 @@ function build($file, $script=false)
     <script src="js/btnUp.js" type="text/javascript"></script>
     <script src="js/newrun.js" type="text/javascript"></script>
     <script src="js/upload.js" type="text/javascript"></script>
+    <script src="js/ie.js" type="text/javascript"></script>
     <script src="js/detailansicht.js" type="text/javascript"></script>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>

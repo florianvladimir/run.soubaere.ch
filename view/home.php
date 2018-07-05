@@ -1,3 +1,4 @@
+<body onload="onL()">
 <main id="content">
 
     <article class="big" id="welcome">
@@ -57,3 +58,4 @@
 <?php gpxUpload(); unset($_SESSION["aktB_B_ID"]); ?>
 
 </main>
+</body>

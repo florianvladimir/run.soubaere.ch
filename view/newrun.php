@@ -3,7 +3,7 @@
 if($_GET["termin"]=='false') {
     ?>
     <main id="content">
-        <article class="contFormular">
+        <article class="contFormular" style="height: auto">
             <div class="formular">
                 <select id="sportart" class="drp" name="sportart" onchange="showUpload()">
                     <option value="0" selected="selected">Sportart auswählen</option>
@@ -11,10 +11,10 @@ if($_GET["termin"]=='false') {
                     <option value="2">Dauerlauf</option>
                     <option value="3">Andere Aktivität</option>
                 </select>
-                <!-- Wenn beim Select OL ausgewählt wird-> Session wird später gebraucht -->
                 <form id="sportat-ol" class="backgrundGrayTransparent" action="insertevent" method="post"
-                      enctype="multipart/form-data">
+                      enctype="multipart/form-data" style="overflow: hidden; height: auto">
                     <?php $_SESSION["sportart"] = 1; ?>
+                    <div style="overflow: auto">
                     <div id="karte">
                         <p>Karte:</p>
                         <input type="text" name='nameK' class='inp' placeholder="Name" required>
@@ -53,7 +53,7 @@ if($_GET["termin"]=='false') {
                             <option value="5">Staffel</option>
                             <option value="6">Nacht-OL</option>
                         </select>
-                        <!-- Wenn die Werte aus dem GPX ausgelesen werden konnten werden diese Inputs nicht angezeigt-->
+
                         <?php if (!isset($_SESSION['aktGPXn']['Distanz'])) { ?>
                             <input type="text" name='distanz' class='inp' placeholder="Distanz in KM" required>
                         <?php } ?>
@@ -73,11 +73,25 @@ if($_GET["termin"]=='false') {
                             <label class="custom-file-label" for="inputGroupFile01">Katrte hinzufügen</label>
                         </div>
                     </div>
+                    </div>
+                    <div id="auswertung">
+                        <div class="continer_aus_ueb">
+                            <div class="aus_ueb">
+                                <p>Auswertung</p>
+                            </div>
+                            <label class="switch" onclick="switchSlider()">
+                                <input type="checkbox" id="slider_chbx">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
 
-                    <div class="btn">
-                        <input type="submit" class="button btnsave" value="Speichern"></inut>
+                        <textarea placeholder="Auswertung:" rows="20" name="auswertung"  id="auswetung_txt" cols="40" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                    </div>
+                    <div class="btn" style="margin-top: 5px">
+                        <input type="submit" class="button btnsave" value="Speichern" style="margin-top: 5px"></inut>
                     </div>
                 </form>
+
                 <!-- Wenn beim Select DL ausgewählt wird-> Session wird später gebraucht -->
                 <form id="sportat-dl" class="backgrundGrayTransparent" action="insertevent" method="post">
                     <?php $_SESSION["sportart"] = 2; ?>
@@ -218,7 +232,7 @@ elseif(1==1){
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01" name="jpgkarte"
                                    accept="image/*">
-                            <label class="custom-file-label" for="inputGroupFile01">Katrte hinzufügen</label>
+                            <label class="custom-file-label" for="inputGroupFile01">Karte hinzufügen</label>
                         </div>
                     </div>
                     </div>

@@ -1,4 +1,4 @@
-
+<body onload="bottomFooter()">
 <main id="content">
 <?php
 //Stellt jeder geplante Wettkampf dar
@@ -75,3 +75,4 @@ function htmlUebRight($data,$row, $i){
     <?php gpxUpload(); ?>
 </main>
 
+</body>

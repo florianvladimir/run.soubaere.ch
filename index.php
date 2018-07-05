@@ -68,7 +68,7 @@ if(!empty($url[1])){
             build("updateevent.php",true);
             break;
         case 'changeziel':
-            build("changeziel.php");
+            build("changeziel.php", true);
             break;
         default:
             build('home.php');

@@ -1,3 +1,4 @@
+<body onload="bottomFooter()">
 <main id="content">
 <?php
 //Stellt jedes Training dar -->Übersicht
@@ -65,3 +66,4 @@ function htmlUebRight($data,$row, $i){
 
 
 </main>
+</body>

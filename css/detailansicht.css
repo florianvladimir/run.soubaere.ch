@@ -107,3 +107,10 @@
     float: left;
     margin-right: 10px;
 }
+a { color: inherit; }
+
+#zSetzung, #aSetzung{
+    margin-top: 5px;
+    display: none;
+    font-size: 2em;
+}

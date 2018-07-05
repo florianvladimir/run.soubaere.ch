@@ -135,9 +135,9 @@ function inserteventol(){
     $dekl=dataIsset($data,'deklaration');
     $disz=dataIsset($data,'disziplin');
 
-    $statement2 = $db->prepare('INSERT INTO detailinfoeventol (MapName,ort,stand,massstab,gelaendeGrob_ID,gelaendeFein_ID,deklaration_ID,disziplin_ID,stringID,gpsjpg) VALUES (?,?,?,?,?,?,?,?,?,?)');
+    $statement2 = $db->prepare('INSERT INTO detailinfoeventol (MapName,ort,stand,massstab,gelaendeGrob_ID,gelaendeFein_ID,deklaration_ID,disziplin_ID,stringID,gpsjpg,auswertung) VALUES (?,?,?,?,?,?,?,?,?,?,?)');
 
-    $statement2->bind_param('ssssiiiiss', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$id,$_SESSION['jpg']['destination']);
+    $statement2->bind_param('ssssiiiisss', $data['nameK'], $data['ort'], $data['stand'], $data['massstab'], $gelG, $gelF, $dekl, $disz,$id,$_SESSION['jpg']['destination'],$data['auswertung']);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
     //Sucht die ID der Basis und Detail Tabellen mit der StringID damit sie dar Zwischentablelle hinzugefügt wwerden können
@@ -149,6 +149,7 @@ function inserteventol(){
 
     $statement3->bind_param('ss',$idBasicInfo,$idDetailInfo);
     if($statement3->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+    unset($_SESSION['jpg']['destination']);
 }
 /*
  * Füg die Detailinfos eines DLs hinzu
@@ -603,6 +604,46 @@ function updateBasicInfoTermin(){
     $statement2->bind_param('is', $biid,$planung);
     if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 
+}
+
+/**
+ * ID_Basic_Detail --> Detailinfool_ID
+ */
+function DetailInfoOlIDbyBasicDetailID($id){
+    $db=connect();
+    $sql = "SELECT * FROM basic_detail where ID_Basic_Detail='".$id."'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $res = $row['detailinfool_ID'];
+
+        }
+    }
+    return $res;
+}
+
+function updateZiel($id){
+    $db=connect();
+    $data=$_SESSION["update"];
+    unset($_SESSION["update"]);
+    //$id=StringIDwithBDID($id);
+    $detailInfoID=DetailInfoOlIDbyBasicDetailID($id);
+    $statement2 = $db->prepare('UPDATE detailinfoeventol set Planung=? where ID_DetailInfo="'.$detailInfoID.'"');
+    $statement2->bind_param('s',$data['ziele']);
+    if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
+
+}
+
+function updateAuswert($id){
+    $db=connect();
+    $data=$_SESSION["update"];
+    unset($_SESSION["update"]);
+    //$id=StringIDwithBDID($id);
+    $detailInfoID=DetailInfoOlIDbyBasicDetailID($id);
+    $statement2 = $db->prepare('UPDATE detailinfoeventol set auswertung=? where ID_DetailInfo="'.$detailInfoID.'"');
+    $statement2->bind_param('s',$data['auswertung']);
+    if($statement2->execute()) echo 'Erfolgreich ' .$db->affected_rows. ' Zeile(n) eingefügt!';
 }
 
 /**Wählt ein zufälliges Bild aus
